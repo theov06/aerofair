@@ -54,5 +54,6 @@ Run locally: npm run dev
 
 **💬 Vision
 **
+
 AeroFair redefines travel fairness by merging AI autonomy, financial transparency, and user empowerment.
 Our goal: make every flight fair, verifiable, and trustless — one ticket at a time.
