@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered fair pricing with blockchain escrow and NFT rebates. Protect yourself from airline price gouging.">
+    <title>AeroFair - AI + DeFi Fair Pricing | SkyVibe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+</head>
+<body>
+    <nav class="navbar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: sticky; top: 0; z-index: 100;">
+        <div class="logo">
+            <span class="logo-icon">✈️</span>
+            <span class="logo-text">SkyVibe</span>
+        </div>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Flights</a>
+            <a href="explore.html">Explore</a>
+            <a href="deals.html">Deals</a>
+            <a href="my-trips.html">My Trips</a>
+            <a href="aerofair.html" style="opacity: 1; text-decoration: underline;">AeroFair AI</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section style="padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); position: relative; overflow: hidden;">
+        <div class="animated-bg">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+        </div>
+        <div class="container" style="position: relative; z-index: 5;">
+            <div style="text-align: center; color: white;">
+                <h1 style="font-size: 56px; font-weight: 700; margin-bottom: 20px; text-shadow: 0 2px 20px rgba(0,0,0,0.2);">
+                    🤖 AeroFair AI Agent
+                </h1>
+                <p style="font-size: 22px; margin-bottom: 15px; opacity: 0.95;">
+                    AI + DeFi for Fair Flight Pricing
+                </p>
+                <p style="font-size: 18px; max-width: 700px; margin: 0 auto 40px; opacity: 0.9;">
+                    Protect yourself from airline price gouging with our autonomous AI agent, blockchain escrow, and NFT rebates
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="scrollToAIAgent()" style="background: white; color: #667eea; border: none; padding: 18px 40px; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                        Try AI Agent
+                    </button>
+                    <button onclick="scrollToWallet()" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: white; border: 2px solid white; padding: 18px 40px; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                        Connect Wallet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section style="padding: 80px 20px; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 42px; margin-bottom: 20px;">How AeroFair Works</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 60px; font-size: 18px;">
+                AI intelligence meets blockchain transparency
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 48px;">
+                        🧠
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">AI Price Detection</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        Our ML models analyze historical data to detect unfair pricing in real-time and find the best deals
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 48px;">
+                        🤖
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">Autonomous Negotiation</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        AI agent negotiates with airlines and OTAs to secure the fairest price for your flight
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 48px;">
+                        💵
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">DeFi Escrow</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        Your funds are locked in a transparent USDC smart contract on Polygon for security
+                    </p>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-size: 48px;">
+                        🎟️
+                    </div>
+                    <h3 style="font-size: 24px; margin-bottom: 15px;">NFT Rebates</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        Get automatic refunds via NFT tokens if you overpaid. Trade or redeem them anytime
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agent Interface -->
+    <section id="aiAgent" style="padding: 80px 20px; background: #f9f9f9;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 42px; margin-bottom: 20px;">🤖 AI Flight Agent</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 18px;">
+                Just tell the AI what you want in natural language
+            </p>
+
+            <div style="max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+                <div id="chatMessages" style="min-height: 300px; max-height: 500px; overflow-y: auto; margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 15px;">
+                    <div class="ai-message" style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: start; gap: 15px;">
+                            <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                🤖
+                            </div>
+                            <div style="background: white; padding: 15px 20px; border-radius: 15px; flex: 1;">
+                                <p style="margin: 0; line-height: 1.6;">
+                                    Hi! I'm your AeroFair AI agent. Tell me where you want to go and I'll find you the fairest price. Try something like: "Book me a flight from New York to Paris under $500"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <input 
+                        type="text" 
+                        id="aiInput" 
+                        placeholder="e.g., Find me a cheap flight to Tokyo next month"
+                        style="flex: 1; padding: 18px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 16px; font-family: 'Poppins', sans-serif;"
+                        onkeypress="if(event.key === 'Enter') sendAIMessage()"
+                    >
+                    <button onclick="sendAIMessage()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 18px 35px; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                        Send
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="quickPrompt('Find me the cheapest flight to London')" class="chip">Cheap to London</button>
+                    <button onclick="quickPrompt('Book eco-friendly flight to Tokyo')" class="chip">Eco to Tokyo</button>
+                    <button onclick="quickPrompt('Business class to Dubai under $2000')" class="chip">Business to Dubai</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wallet & Escrow -->
+    <section id="wallet" style="padding: 80px 20px; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 42px; margin-bottom: 20px;">💰 DeFi Escrow</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 60px; font-size: 18px;">
+                Secure, transparent, non-custodial payment system
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <!-- Wallet Connection -->
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 20px; color: white;">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Connect Wallet</h3>
+                    <div id="walletStatus" style="margin-bottom: 25px;">
+                        <p style="opacity: 0.9; margin-bottom: 20px;">Connect your Web3 wallet to use AeroFair escrow</p>
+                        <button onclick="connectWallet()" style="width: 100%; background: white; color: #667eea; border: none; padding: 15px; border-radius: 10px; font-weight: 600; cursor: pointer; font-size: 16px;">
+                            Connect MetaMask
+                        </button>
+                    </div>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; backdrop-filter: blur(10px);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>Network:</span>
+                            <span style="font-weight: 600;">Polygon</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Balance:</span>
+                            <span style="font-weight: 600;" id="walletBalance">-- USDC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escrow Status -->
+                <div style="background: white; padding: 40px; border-radius: 20px; border: 2px solid #e0e0e0;">
+                    <h3 style="font-size: 24px; margin-bottom: 20px;">Active Escrows</h3>
+                    <div id="escrowList">
+                        <div style="text-align: center; padding: 40px 20px; color: #999;">
+                            <div style="font-size: 48px; margin-bottom: 15px;">🔒</div>
+                            <p>No active escrows</p>
+                            <p style="font-size: 14px; margin-top: 10px;">Book a flight with AeroFair to see your escrow here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NFT Rebates -->
+    <section style="padding: 80px 20px; background: #f9f9f9;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 42px; margin-bottom: 20px;">🎟️ Your NFT Rebates</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 60px; font-size: 18px;">
+                Automatic refunds as tradeable NFT tokens
+            </p>
+
+            <div id="nftGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;">
+                <!-- Sample NFT -->
+                <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                    <div style="height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 64px;">
+                        🎫
+                    </div>
+                    <div style="padding: 25px;">
+                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rebate NFT #1234</h3>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span style="color: #666;">Value:</span>
+                            <span style="font-weight: 700; color: #28a745;">$45 USDC</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                            <span style="color: #666;">Flight:</span>
+                            <span style="font-weight: 600;">JFK → LHR</span>
+                        </div>
+                        <button onclick="redeemNFT(1234)" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                            Redeem Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div style="background: white; border-radius: 15px; padding: 40px; text-align: center; border: 2px dashed #e0e0e0;">
+                    <div style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;">🎟️</div>
+                    <p style="color: #999;">No rebates yet</p>
+                    <p style="font-size: 14px; color: #999; margin-top: 10px;">You'll receive NFT rebates if you overpaid</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Fairness Guarantee -->
+    <section style="padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 42px; margin-bottom: 20px;">💎 Fair Price Guarantee</h2>
+                <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+                    If our AI finds a better price within 24 hours of booking, you automatically get a rebate NFT
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 36px; font-weight: 700; margin-bottom: 10px;">$2.4M</div>
+                        <div style="opacity: 0.9;">Total Refunded</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 36px; font-weight: 700; margin-bottom: 10px;">15,234</div>
+                        <div style="opacity: 0.9;">Flights Protected</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px;">
+                        <div style="font-size: 36px; font-weight: 700; margin-bottom: 10px;">$158</div>
+                        <div style="opacity: 0.9;">Avg. Savings</div>
+                    </div>
+                </div>
+
+                <button onclick="scrollToAIAgent()" style="background: white; color: #667eea; border: none; padding: 18px 50px; border-radius: 12px; font-size: 18px; font-weight: 600; cursor: pointer;">
+                    Start Saving Now
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SkyVibe + AeroFair. Smart flight booking with AI and blockchain.</p>
+        </div>
+    </footer>
+
+    <script src="aerofair.js"></script>
+</body>
+</html>

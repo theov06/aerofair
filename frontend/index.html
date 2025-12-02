@@ -1,17 +1,286 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AeroFair - Fair Flight Pricing</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart flight booking with CO2 tracking, AI price predictions, and mood-based search. Find eco-friendly flights and discover layover activities.">
+    <meta name="keywords" content="flight booking, cheap flights, eco-friendly travel, carbon tracking, price predictions, travel deals">
+    <meta name="author" content="SkyVibe">
+    <title>SkyVibe - Smart Flight Booking with CO2 Tracking</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Airline Price Watchdog</h1>
-    <input id="origin" placeholder="Origin">
-    <input id="destination" placeholder="Destination">
-    <input id="price" placeholder="Current Price">
-    <button onclick="checkPrice()">Check</button>
-    <pre id="output"></pre>
+    <!-- Hero Section with Animated Background -->
+    <div class="hero-section">
+        <div class="animated-bg">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="cloud cloud3"></div>
+            <div class="plane-icon">✈️</div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-icon">✈️</span>
+                <span class="logo-text">SkyVibe</span>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Flights</a>
+                <a href="explore.html">Explore</a>
+                <a href="deals.html">Deals</a>
+                <a href="my-trips.html">My Trips</a>
+                <a href="aerofair.html">AeroFair AI</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <h1 class="hero-title">Find Your Perfect Flight</h1>
+            <p class="hero-subtitle">Smart booking with climate insights, price predictions & personalized recommendations</p>
+            
+            <!-- Travel Mood Selector -->
+            <div class="mood-selector">
+                <div class="mood-item" data-mood="adventure">
+                    <span class="mood-icon">🏔️</span>
+                    <span>Adventure</span>
+                </div>
+                <div class="mood-item" data-mood="luxury">
+                    <span class="mood-icon">💎</span>
+                    <span>Luxury</span>
+                </div>
+                <div class="mood-item" data-mood="budget">
+                    <span class="mood-icon">💰</span>
+                    <span>Budget</span>
+                </div>
+                <div class="mood-item" data-mood="eco">
+                    <span class="mood-icon">🌱</span>
+                    <span>Eco-Friendly</span>
+                </div>
+                <div class="mood-item" data-mood="business">
+                    <span class="mood-icon">💼</span>
+                    <span>Business</span>
+                </div>
+            </div>
+
+            <!-- Search Form -->
+            <div class="search-container">
+                <div class="search-tabs">
+                    <button class="tab-btn active" data-tab="roundtrip">Round Trip</button>
+                    <button class="tab-btn" data-tab="oneway">One Way</button>
+                    <button class="tab-btn" data-tab="multicity">Multi-City</button>
+                </div>
+
+                <div class="search-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>From</label>
+                            <input type="text" id="from" placeholder="New York (JFK)" class="location-input">
+                            <span class="input-icon">🛫</span>
+                        </div>
+                        
+                        <button class="swap-btn" id="swapBtn">⇄</button>
+                        
+                        <div class="input-group">
+                            <label>To</label>
+                            <input type="text" id="to" placeholder="Tokyo (NRT)" class="location-input">
+                            <span class="input-icon">🛬</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Departure</label>
+                            <input type="date" id="departure" class="date-input">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Return</label>
+                            <input type="date" id="return" class="date-input">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label>Passengers</label>
+                            <select id="passengers" class="select-input">
+                                <option>1 Adult</option>
+                                <option>2 Adults</option>
+                                <option>3 Adults</option>
+                                <option>4+ Adults</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="advanced-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="flexibleDates">
+                            <span>Flexible dates (±3 days)</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="directOnly">
+                            <span>Direct flights only</span>
+                        </label>
+                    </div>
+
+                    <button class="search-btn">
+                        <span>Search Flights</span>
+                        <span class="btn-icon">🔍</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flexible Date Heat Map -->
+    <section class="heatmap-section" id="heatmap" style="display: none;">
+        <div class="container">
+            <h2>📅 Best Time to Fly</h2>
+            <p class="section-subtitle">Prices vary by date - find the cheapest days</p>
+            <div class="heatmap-calendar" id="heatmapCalendar"></div>
+        </div>
+    </section>
+
+    <!-- Flight Results -->
+    <section class="results-section" id="results" style="display: none;">
+        <div class="container">
+            <div class="results-header">
+                <h2>Available Flights</h2>
+                <div class="filter-chips">
+                    <button class="chip active">Best Value</button>
+                    <button class="chip">Fastest</button>
+                    <button class="chip">Cheapest</button>
+                    <button class="chip">Most Eco-Friendly</button>
+                </div>
+            </div>
+
+            <div class="results-grid">
+                <!-- Sidebar Filters -->
+                <div class="filters-sidebar">
+                    <h3>Filters</h3>
+                    
+                    <div class="filter-group">
+                        <h4>Price Range</h4>
+                        <div class="price-range">
+                            <input type="range" min="0" max="2000" value="2000" id="priceRange">
+                            <div class="price-labels">
+                                <span>$0</span>
+                                <span id="maxPrice">$2000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Stops</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span>Direct</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span>1 Stop</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span>2+ Stops</span>
+                        </label>
+                    </div>
+
+                    <div class="filter-group">
+                        <h4>Airlines</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" checked>
+                            <span>All Airlines</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Flight Cards -->
+                <div class="flights-list" id="flightsList"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2>Why Choose SkyVibe?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Climate Impact Score</h3>
+                    <p>See CO2 emissions for each flight and choose eco-friendly alternatives</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Price Prediction</h3>
+                    <p>Know if you should book now or wait for better prices</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Layover Activities</h3>
+                    <p>Discover things to do during long layovers in connecting cities</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Flexible Date Heatmap</h3>
+                    <p>Visual calendar showing the cheapest days to travel</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Mood-Based Search</h3>
+                    <p>Find flights that match your travel style and preferences</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Multi-City Builder</h3>
+                    <p>Plan complex trips with multiple destinations easily</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations-section">
+        <div class="container">
+            <h2>✨ Trending Destinations</h2>
+            <div class="destinations-grid">
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800');">
+                    <div class="destination-overlay">
+                        <h3>Tokyo, Japan</h3>
+                        <p>From $650</p>
+                        <span class="eco-badge">🌱 Low Carbon</span>
+                    </div>
+                </div>
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800');">
+                    <div class="destination-overlay">
+                        <h3>Paris, France</h3>
+                        <p>From $520</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800');">
+                    <div class="destination-overlay">
+                        <h3>Dubai, UAE</h3>
+                        <p>From $780</p>
+                    </div>
+                </div>
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=800');">
+                    <div class="destination-overlay">
+                        <h3>Bali, Indonesia</h3>
+                        <p>From $890</p>
+                        <span class="eco-badge">🌱 Low Carbon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SkyVibe. Smart flight booking reimagined.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

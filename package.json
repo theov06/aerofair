@@ -1,5 +1,20 @@
 {
-  "dependencies": {
-    "web3": "^4.16.0"
-  }
+  "name": "skyvibe-flight-booking",
+  "version": "1.0.0",
+  "description": "Complete flight booking platform with unique features like CO2 tracking, AI price predictions, and mood-based search",
+  "main": "frontend/index.html",
+  "scripts": {
+    "start": "npx serve frontend -p 3000",
+    "dev": "npx serve frontend -p 3000",
+    "open": "open frontend/index.html || start frontend/index.html || xdg-open frontend/index.html"
+  },
+  "keywords": [
+    "flight-booking",
+    "travel",
+    "eco-friendly",
+    "carbon-tracking",
+    "price-prediction"
+  ],
+  "author": "SkyVibe",
+  "license": "MIT"
 }

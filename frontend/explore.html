@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore 12+ amazing destinations with eco-friendly options, carbon calculator, and travel inspiration.">
+    <title>Explore Destinations - SkyVibe</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: sticky; top: 0; z-index: 100;">
+        <div class="logo">
+            <span class="logo-icon">✈️</span>
+            <span class="logo-text">SkyVibe</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Flights</a>
+            <a href="explore.html" style="opacity: 1; text-decoration: underline;">Explore</a>
+            <a href="deals.html">Deals</a>
+            <a href="my-trips.html">My Trips</a>
+            <a href="aerofair.html">AeroFair AI</a>
+        </div>
+    </nav>
+
+    <section style="padding: 60px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="container">
+            <h1 style="color: white; font-size: 48px; text-align: center; margin-bottom: 20px;">Explore the World</h1>
+            <p style="color: rgba(255,255,255,0.9); text-align: center; font-size: 18px; max-width: 600px; margin: 0 auto;">
+                Discover amazing destinations with our smart recommendations based on your preferences
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section style="padding: 60px 20px; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">🗺️ Popular Destinations</h2>
+            
+            <div class="explore-filters" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="chip active" onclick="filterDestinations('all')">All</button>
+                <button class="chip" onclick="filterDestinations('eco')">🌱 Eco-Friendly</button>
+                <button class="chip" onclick="filterDestinations('beach')">🏖️ Beach</button>
+                <button class="chip" onclick="filterDestinations('city')">🏙️ City</button>
+                <button class="chip" onclick="filterDestinations('adventure')">🏔️ Adventure</button>
+                <button class="chip" onclick="filterDestinations('culture')">🎭 Culture</button>
+            </div>
+
+            <div class="destinations-grid" id="destinationsGrid">
+                <!-- Destinations will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Inspiration -->
+    <section style="padding: 60px 20px; background: #f9f9f9;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">✨ Travel Inspiration</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div class="inspiration-card">
+                    <div class="inspiration-image" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800'); height: 200px; background-size: cover; background-position: center; border-radius: 15px 15px 0 0;"></div>
+                    <div style="padding: 25px;">
+                        <h3>Best Time to Visit Japan</h3>
+                        <p style="color: #666; margin: 15px 0;">Cherry blossom season offers the most magical experience. Plan your trip for late March to early April.</p>
+                        <a href="#" style="color: #667eea; font-weight: 600; text-decoration: none;">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="inspiration-card">
+                    <div class="inspiration-image" style="background-image: url('https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800'); height: 200px; background-size: cover; background-position: center; border-radius: 15px 15px 0 0;"></div>
+                    <div style="padding: 25px;">
+                        <h3>Eco-Friendly Travel Tips</h3>
+                        <p style="color: #666; margin: 15px 0;">Reduce your carbon footprint while exploring the world. Small changes make a big difference.</p>
+                        <a href="#" style="color: #667eea; font-weight: 600; text-decoration: none;">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="inspiration-card">
+                    <div class="inspiration-image" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800'); height: 200px; background-size: cover; background-position: center; border-radius: 15px 15px 0 0;"></div>
+                    <div style="padding: 25px;">
+                        <h3>Hidden Gems in Europe</h3>
+                        <p style="color: #666; margin: 15px 0;">Discover lesser-known European cities that offer authentic experiences without the crowds.</p>
+                        <a href="#" style="color: #667eea; font-weight: 600; text-decoration: none;">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Climate Impact Calculator -->
+    <section style="padding: 60px 20px; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">🌍 Travel Carbon Calculator</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Calculate and offset your travel's environmental impact</p>
+            
+            <div style="max-width: 600px; margin: 0 auto; background: #f8f9fa; padding: 40px; border-radius: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Distance (km)</label>
+                    <input type="number" id="distance" placeholder="e.g., 10000" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px;">
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 500;">Number of Passengers</label>
+                    <input type="number" id="passengers" value="1" min="1" style="width: 100%; padding: 15px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px;">
+                </div>
+                
+                <button onclick="calculateCarbon()" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                    Calculate Impact
+                </button>
+                
+                <div id="carbonResult" style="margin-top: 30px; display: none;">
+                    <div style="background: white; padding: 25px; border-radius: 15px; text-align: center;">
+                        <h3 style="color: #667eea; font-size: 32px; margin-bottom: 10px;" id="co2Amount"></h3>
+                        <p style="color: #666; margin-bottom: 20px;">Total CO₂ Emissions</p>
+                        <p style="font-size: 14px; color: #666;" id="equivalence"></p>
+                        <button onclick="offsetCarbon()" style="margin-top: 20px; background: #28a745; color: white; border: none; padding: 12px 30px; border-radius: 10px; font-weight: 600; cursor: pointer;">
+                            Offset This Carbon
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SkyVibe. Smart flight booking reimagined.</p>
+        </div>
+    </footer>
+
+    <script src="explore.js"></script>
+</body>
+</html>

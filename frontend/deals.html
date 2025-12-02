@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hot flight deals, flash sales, weekend getaways, and last-minute offers. Save up to 48% on flights!">
+    <title>Flight Deals - SkyVibe</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position: sticky; top: 0; z-index: 100;">
+        <div class="logo">
+            <span class="logo-icon">✈️</span>
+            <span class="logo-text">SkyVibe</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Flights</a>
+            <a href="explore.html">Explore</a>
+            <a href="deals.html" style="opacity: 1; text-decoration: underline;">Deals</a>
+            <a href="my-trips.html">My Trips</a>
+            <a href="aerofair.html">AeroFair AI</a>
+        </div>
+    </nav>
+
+    <section style="padding: 60px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);">
+        <div class="container">
+            <h1 style="color: white; font-size: 48px; text-align: center; margin-bottom: 20px;">🔥 Hot Deals</h1>
+            <p style="color: rgba(255,255,255,0.9); text-align: center; font-size: 18px;">
+                Limited time offers on popular routes
+            </p>
+        </div>
+    </section>
+
+    <!-- Flash Deals -->
+    <section style="padding: 60px 20px; background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="margin-bottom: 10px;">⚡ Flash Deals</h2>
+                <p style="color: #666;">These deals expire soon - book now!</p>
+                <div id="countdown" style="font-size: 24px; font-weight: 700; color: #dc3545; margin-top: 20px;"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;" id="flashDeals">
+                <!-- Flash deals will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekend Getaways -->
+    <section style="padding: 60px 20px; background: #f9f9f9;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">🌴 Weekend Getaways</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;" id="weekendDeals">
+                <!-- Weekend deals will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Last Minute Deals -->
+    <section style="padding: 60px 20px; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">🎯 Last Minute Deals</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">Departing within the next 7 days</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;" id="lastMinuteDeals">
+                <!-- Last minute deals will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Alerts -->
+    <section style="padding: 60px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="container">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center; color: white;">
+                <h2 style="margin-bottom: 20px;">🔔 Set Price Alerts</h2>
+                <p style="margin-bottom: 30px; opacity: 0.9;">Get notified when prices drop on your favorite routes</p>
+                
+                <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 40px; border-radius: 20px;">
+                    <input type="text" placeholder="From (e.g., New York)" style="width: 100%; padding: 15px; border: none; border-radius: 10px; margin-bottom: 15px; font-size: 16px;">
+                    <input type="text" placeholder="To (e.g., Paris)" style="width: 100%; padding: 15px; border: none; border-radius: 10px; margin-bottom: 15px; font-size: 16px;">
+                    <input type="email" placeholder="Your email" style="width: 100%; padding: 15px; border: none; border-radius: 10px; margin-bottom: 20px; font-size: 16px;">
+                    <button onclick="setPriceAlert()" style="width: 100%; background: white; color: #667eea; border: none; padding: 15px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer;">
+                        Set Alert
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 SkyVibe. Smart flight booking reimagined.</p>
+        </div>
+    </footer>
+
+    <script src="deals.js"></script>
+</body>
+</html>
