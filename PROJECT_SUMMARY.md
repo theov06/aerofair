@@ -39,7 +39,7 @@ open QUICKSTART.html
 ### Using NPM
 ```bash
 npm start
-# Opens on http://localhost:3000
+# Opens on http://localhost:5000
 ```
 
 ### Using Python

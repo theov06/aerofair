@@ -110,7 +110,7 @@ python -m http.server 8000
 **Using Node.js:**
 ```bash
 npx serve frontend
-# Visit http://localhost:3000
+# Visit http://localhost:5000
 ```
 
 **Using PHP:**

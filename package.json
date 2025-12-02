@@ -4,8 +4,8 @@
   "description": "Complete flight booking platform with unique features like CO2 tracking, AI price predictions, and mood-based search",
   "main": "frontend/index.html",
   "scripts": {
-    "start": "npx serve frontend -p 3000",
-    "dev": "npx serve frontend -p 3000",
+    "start": "npx serve frontend -p 5000",
+    "dev": "npx serve frontend -p 5000",
     "open": "open frontend/index.html || start frontend/index.html || xdg-open frontend/index.html"
   },
   "keywords": [
