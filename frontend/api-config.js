@@ -163,12 +163,131 @@ class AirLabsService {
     async getSchedules(depIATA, arrIATA) {
         try {
             const response = await fetch(
-                `${this.baseUrl}/schedules?dep_iata=${depIATA}&arr_iata=${arrIATA}&api_key=${this.apiKey}`
+                `${this.baseUrl}/schedules?dep_iata=${depIATA}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            
+            // Filter for destination if provided
+            if (arrIATA && data.response) {
+                return data.response.filter(flight => flight.arr_iata === arrIATA);
+            }
+            
+            return data.response || [];
+        } catch (error) {
+            console.error('Error fetching schedules:', error);
+            return [];
+        }
+    }
+
+    // NEW: Get specific flight details
+    async getFlightDetails(flightIATA) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/flight?flight_iata=${flightIATA}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            return data.response || null;
+        } catch (error) {
+            console.error('Error fetching flight details:', error);
+            return null;
+        }
+    }
+
+    // NEW: Get airport delays
+    async getAirportDelays(airportIATA, delayMinutes = 30) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/delays?iata_code=${airportIATA}&delay=${delayMinutes}&api_key=${this.apiKey}`
             );
             const data = await response.json();
             return data.response || [];
         } catch (error) {
-            console.error('Error fetching schedules:', error);
+            console.error('Error fetching delays:', error);
+            return [];
+        }
+    }
+
+    // NEW: Airport autocomplete/search
+    async searchAirports(query) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/suggest?q=${encodeURIComponent(query)}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            
+            // Filter for Canadian airports only
+            if (data.response && data.response.airports) {
+                return data.response.airports.filter(airport => 
+                    airport.country_code === 'CA'
+                );
+            }
+            return [];
+        } catch (error) {
+            console.error('Error searching airports:', error);
+            return [];
+        }
+    }
+
+    // NEW: Get airline information
+    async getAirlineInfo(airlineIATA) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/airlines?iata_code=${airlineIATA}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            return data.response ? data.response[0] : null;
+        } catch (error) {
+            console.error('Error fetching airline info:', error);
+            return null;
+        }
+    }
+
+    // NEW: Get airport information
+    async getAirportInfo(airportIATA) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/airports?iata_code=${airportIATA}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            return data.response ? data.response[0] : null;
+        } catch (error) {
+            console.error('Error fetching airport info:', error);
+            return null;
+        }
+    }
+
+    // NEW: Get nearby airports
+    async getNearbyAirports(lat, lng, distance = 50) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/nearby?lat=${lat}&lng=${lng}&distance=${distance}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            return data.response || [];
+        } catch (error) {
+            console.error('Error fetching nearby airports:', error);
+            return [];
+        }
+    }
+
+    // NEW: Get airline routes
+    async getAirlineRoutes(airlineIATA) {
+        try {
+            const response = await fetch(
+                `${this.baseUrl}/routes?airline_iata=${airlineIATA}&api_key=${this.apiKey}`
+            );
+            const data = await response.json();
+            
+            // Filter for Canadian domestic routes
+            if (data.response) {
+                return data.response.filter(route => 
+                    API_CONFIG.CANADIAN_AIRPORTS[route.dep_iata] && 
+                    API_CONFIG.CANADIAN_AIRPORTS[route.arr_iata]
+                );
+            }
+            return [];
+        } catch (error) {
+            console.error('Error fetching routes:', error);
             return [];
         }
     }
@@ -386,7 +505,7 @@ async function fetchLiveCanadianFlights() {
     }
 }
 
-// Fetch flights for specific route
+// Fetch flights for specific route (enhanced with schedules)
 async function fetchRouteFlights(from, to) {
     if (!airLabsService) {
         console.log('Using sample data - API not configured');
@@ -394,11 +513,55 @@ async function fetchRouteFlights(from, to) {
     }
 
     try {
-        const flights = await airLabsService.getFlightsByRoute(from, to);
-        return airLabsService.convertToAppFormat(flights);
+        // Try to get live flights first
+        const liveFlights = await airLabsService.getFlightsByRoute(from, to);
+        
+        // Also try to get scheduled flights
+        const scheduledFlights = await airLabsService.getSchedules(from, to);
+        
+        // Combine both sources
+        const allFlights = [...(liveFlights || []), ...(scheduledFlights || [])];
+        
+        if (allFlights.length > 0) {
+            return airLabsService.convertToAppFormat(allFlights);
+        }
+        
+        return null;
     } catch (error) {
         console.error('Error fetching route flights:', error);
         return null;
+    }
+}
+
+// NEW: Get flight status by flight number
+async function getFlightStatus(flightIATA) {
+    if (!airLabsService) {
+        return null;
+    }
+
+    try {
+        const flightDetails = await airLabsService.getFlightDetails(flightIATA);
+        if (flightDetails) {
+            return airLabsService.convertToAppFormat([flightDetails])[0];
+        }
+        return null;
+    } catch (error) {
+        console.error('Error fetching flight status:', error);
+        return null;
+    }
+}
+
+// NEW: Check airport delays
+async function checkAirportDelays(airportIATA) {
+    if (!airLabsService) {
+        return [];
+    }
+
+    try {
+        return await airLabsService.getAirportDelays(airportIATA);
+    } catch (error) {
+        console.error('Error checking delays:', error);
+        return [];
     }
 }
 

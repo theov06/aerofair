@@ -140,8 +140,13 @@ async function performSearch() {
     const departure = document.getElementById('departure').value;
     const returnDate = document.getElementById('return').value;
     
+    // Validation
     if (!from || !to || !departure) {
-        alert('Please fill in all required fields');
+        if (typeof showToast !== 'undefined') {
+            showToast('Please fill in all required fields', 'error');
+        } else {
+            alert('Please fill in all required fields');
+        }
         return;
     }
     
@@ -149,7 +154,22 @@ async function performSearch() {
     const fromCode = extractAirportCode(from);
     const toCode = extractAirportCode(to);
     
+    // Check if same airport
+    if (fromCode === toCode) {
+        if (typeof showToast !== 'undefined') {
+            showToast('Departure and destination cannot be the same', 'error');
+        } else {
+            alert('Departure and destination cannot be the same');
+        }
+        return;
+    }
+    
     console.log(`Search: ${fromCode} → ${toCode}`);
+    
+    // Show loading
+    if (typeof showLoading !== 'undefined') {
+        showLoading('Searching for flights...');
+    }
     
     // Try to fetch live flights if API is available
     if (typeof fetchRouteFlights !== 'undefined' && fromCode && toCode) {
