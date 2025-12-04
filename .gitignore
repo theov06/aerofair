@@ -1,1 +1,3 @@
 node_modules
+# API Keys - Do not commit
+frontend/api-config.js

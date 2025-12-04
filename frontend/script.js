@@ -1,175 +1,60 @@
-// Sample flight data - Canadian Domestic Flights Only
-const sampleFlights = [
-    {
-        id: 1,
-        airline: "Air Canada",
-        logo: "🍁",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "8:00 AM",
-        arriveTime: "10:30 AM",
-        duration: "5h 30m",
-        stops: "Direct",
-        price: 285,
-        co2: 420,
-        priceChange: "down",
-        layoverActivity: null,
-        ecoFriendly: true,
-        class: "Economy",
-        seats: 12,
-        amenities: ["WiFi", "Meals", "Entertainment"]
-    },
-    {
-        id: 2,
-        airline: "WestJet",
-        logo: "🛫",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "11:15 AM",
-        arriveTime: "1:45 PM",
-        duration: "5h 30m",
-        stops: "Direct",
-        price: 265,
-        co2: 415,
-        priceChange: "stable",
-        layoverActivity: null,
-        ecoFriendly: true,
-        class: "Economy",
-        seats: 18,
-        amenities: ["WiFi", "Snacks", "Entertainment"]
-    },
-    {
-        id: 3,
-        airline: "Air Canada",
-        logo: "🍁",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "6:30 PM",
-        arriveTime: "9:00 PM",
-        duration: "5h 30m",
-        stops: "Direct",
-        price: 310,
-        co2: 420,
-        priceChange: "up",
-        layoverActivity: null,
-        ecoFriendly: true,
-        class: "Economy",
-        seats: 8,
-        amenities: ["WiFi", "Meals", "Entertainment", "Extra Legroom"]
-    },
-    {
-        id: 4,
-        airline: "Porter Airlines",
-        logo: "✈️",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "7:00 AM",
-        arriveTime: "12:45 PM",
-        duration: "6h 45m",
-        stops: "1 stop (YYC)",
-        price: 225,
-        co2: 480,
-        priceChange: "down",
-        layoverActivity: "2h layover in Calgary - Visit Calgary Tower area, grab Alberta beef",
-        ecoFriendly: false,
-        class: "Economy",
-        seats: 15,
-        amenities: ["WiFi", "Complimentary Snacks", "Beer & Wine"]
-    },
-    {
-        id: 5,
-        airline: "Air Canada",
-        logo: "🍁",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "9:30 AM",
-        arriveTime: "12:00 PM",
-        duration: "5h 30m",
-        stops: "Direct",
-        price: 685,
-        co2: 380,
-        priceChange: "stable",
-        layoverActivity: null,
-        ecoFriendly: true,
-        class: "Business",
-        seats: 6,
-        amenities: ["WiFi", "Gourmet Meals", "Lie-flat Seats", "Maple Leaf Lounge", "Premium Entertainment"]
-    },
-    {
-        id: 6,
-        airline: "Flair Airlines",
-        logo: "💰",
-        from: "YYZ",
-        to: "YVR",
-        departTime: "5:45 AM",
-        arriveTime: "1:30 PM",
-        duration: "7h 45m",
-        stops: "1 stop (YWG)",
-        price: 189,
-        co2: 495,
-        priceChange: "down",
-        layoverActivity: "3h layover in Winnipeg - Visit The Forks Market, grab a BeaverTail pastry",
-        ecoFriendly: false,
-        class: "Economy",
-        seats: 22,
-        amenities: ["Basic Seat"]
-    }
-];
+// Sample flight data - Empty by default, will be populated by search
+const sampleFlights = [];
 
-// Destinations data
+// Trending Canadian Destinations
 const destinations = [
     {
-        name: "Tokyo, Japan",
-        code: "NRT",
-        image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
-        price: 650,
-        description: "Experience the perfect blend of tradition and technology",
+        name: "Vancouver, BC",
+        code: "YVR",
+        image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800",
+        price: 285,
+        description: "Mountains meet ocean in Canada's west coast gem",
         ecoFriendly: true,
         popular: true
     },
     {
-        name: "Paris, France",
-        code: "CDG",
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800",
-        price: 520,
-        description: "The city of lights and romance",
-        ecoFriendly: false,
-        popular: true
-    },
-    {
-        name: "Dubai, UAE",
-        code: "DXB",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800",
-        price: 780,
-        description: "Luxury and innovation in the desert",
-        ecoFriendly: false,
-        popular: true
-    },
-    {
-        name: "Bali, Indonesia",
-        code: "DPS",
-        image: "https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=800",
-        price: 890,
-        description: "Tropical paradise with stunning beaches",
+        name: "Montreal, QC",
+        code: "YUL",
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
+        price: 189,
+        description: "European charm with North American energy",
         ecoFriendly: true,
         popular: true
     },
     {
-        name: "London, UK",
-        code: "LHR",
-        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800",
-        price: 480,
-        description: "Historic charm meets modern culture",
-        ecoFriendly: false,
+        name: "Calgary, AB",
+        code: "YYC",
+        image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800",
+        price: 245,
+        description: "Gateway to the Rockies and Stampede City",
+        ecoFriendly: true,
         popular: true
     },
     {
-        name: "Barcelona, Spain",
-        code: "BCN",
-        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800",
-        price: 550,
-        description: "Art, architecture, and Mediterranean vibes",
-        ecoFriendly: false,
+        name: "Halifax, NS",
+        code: "YHZ",
+        image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800",
+        price: 310,
+        description: "Maritime beauty and historic waterfront",
+        ecoFriendly: true,
+        popular: true
+    },
+    {
+        name: "Victoria, BC",
+        code: "YYJ",
+        image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+        price: 225,
+        description: "British Columbia's charming capital city",
+        ecoFriendly: true,
+        popular: true
+    },
+    {
+        name: "Quebec City, QC",
+        code: "YQB",
+        image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800",
+        price: 265,
+        description: "Old World charm in North America",
+        ecoFriendly: true,
         popular: true
     }
 ];
@@ -264,27 +149,136 @@ async function performSearch() {
     const fromCode = extractAirportCode(from);
     const toCode = extractAirportCode(to);
     
+    console.log(`Search: ${fromCode} → ${toCode}`);
+    
     // Try to fetch live flights if API is available
     if (typeof fetchRouteFlights !== 'undefined' && fromCode && toCode) {
         showNotification('Searching live flights...', 'info');
-        const liveFlights = await fetchRouteFlights(fromCode, toCode);
-        
-        if (liveFlights && liveFlights.length > 0) {
-            // Use live data
-            displayFlights(liveFlights);
-            showNotification(`Found ${liveFlights.length} live flights!`, 'success');
-        } else {
+        try {
+            const liveFlights = await fetchRouteFlights(fromCode, toCode);
+            console.log('Live flights response:', liveFlights);
+            
+            if (liveFlights && liveFlights.length > 0) {
+                // Use live data
+                console.log('Using live flight data');
+                console.log('First flight object:', liveFlights[0]);
+                console.log('Flight properties:', {
+                    airline: liveFlights[0].airline,
+                    from: liveFlights[0].from,
+                    to: liveFlights[0].to,
+                    departTime: liveFlights[0].departTime,
+                    arriveTime: liveFlights[0].arriveTime,
+                    duration: liveFlights[0].duration,
+                    price: liveFlights[0].price,
+                    logo: liveFlights[0].logo
+                });
+                displayFlights(liveFlights);
+                showNotification(`Found ${liveFlights.length} live flights!`, 'success');
+            } else {
+                // Fallback to sample data filtered by route
+                console.log('No live flights, using sample data');
+                const filteredSampleFlights = filterSampleFlightsByRoute(fromCode, toCode);
+                displayFlights(filteredSampleFlights);
+                showNotification(`Showing sample flights for ${fromCode} → ${toCode}`, 'info');
+            }
+        } catch (error) {
+            console.error('Error fetching live flights:', error);
             // Fallback to sample data
-            displayFlights();
-            showNotification('Showing sample flights (API data unavailable)', 'info');
+            const filteredSampleFlights = filterSampleFlightsByRoute(fromCode, toCode);
+            displayFlights(filteredSampleFlights);
+            showNotification(`Showing sample flights for ${fromCode} → ${toCode}`, 'info');
         }
     } else {
-        // Use sample data
-        displayFlights();
+        // Use sample data filtered by route
+        console.log('API not available, using sample data');
+        const filteredSampleFlights = filterSampleFlightsByRoute(fromCode, toCode);
+        displayFlights(filteredSampleFlights);
     }
     
     // Scroll to results
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Filter sample flights by route or generate route-specific flights
+function filterSampleFlightsByRoute(fromCode, toCode) {
+    // If no codes provided, return default sample flights
+    if (!fromCode || !toCode) {
+        console.log('No airport codes provided, using default sample flights');
+        return sampleFlights;
+    }
+    
+    console.log(`Filtering flights for route: ${fromCode} → ${toCode}`);
+    
+    // Check if we have sample flights for this exact route
+    const exactMatches = sampleFlights.filter(f => f.from === fromCode && f.to === toCode);
+    
+    if (exactMatches.length > 0) {
+        console.log(`Found ${exactMatches.length} existing sample flights for this route`);
+        return exactMatches;
+    }
+    
+    // Generate sample flights for the searched route
+    console.log('Generating new sample flights for this route');
+    return generateSampleFlightsForRoute(fromCode, toCode);
+}
+
+// Generate sample flights for any route
+function generateSampleFlightsForRoute(fromCode, toCode) {
+    console.log(`Generating flights for: ${fromCode} → ${toCode}`);
+    
+    const airlines = [
+        { name: 'Air Canada', logo: 'airlines/Air Canada.png', amenities: ['WiFi', 'Meals', 'Entertainment'] },
+        { name: 'WestJet', logo: 'airlines/Westjet.png', amenities: ['WiFi', 'Snacks', 'Entertainment'] },
+        { name: 'Porter Airlines', logo: 'airlines/Porter.svg', amenities: ['WiFi', 'Complimentary Snacks', 'Beer & Wine'] },
+        { name: 'Flair Airlines', logo: 'airlines/Flair Airlines.png', amenities: ['Basic Seat'] },
+        { name: 'Air Transat', logo: 'airlines/Air Transat.png', amenities: ['WiFi', 'Meals', 'Entertainment'] }
+    ];
+    
+    const flights = [];
+    const basePrice = 200 + Math.random() * 200;
+    console.log(`Base price: ${basePrice}`);
+    
+    // Generate 3-5 flights for the route
+    const numFlights = 3 + Math.floor(Math.random() * 3);
+    
+    for (let i = 0; i < numFlights; i++) {
+        const airline = airlines[Math.floor(Math.random() * airlines.length)];
+        const hour = 6 + Math.floor(Math.random() * 14); // 6 AM to 8 PM
+        const minute = Math.floor(Math.random() * 4) * 15; // 0, 15, 30, 45
+        const duration = 2 + Math.floor(Math.random() * 4); // 2-6 hours
+        const durationMinutes = Math.floor(Math.random() * 60);
+        
+        const departTime = `${hour % 12 || 12}:${minute.toString().padStart(2, '0')} ${hour >= 12 ? 'PM' : 'AM'}`;
+        const arriveHour = (hour + duration) % 24;
+        const arriveMinute = (minute + durationMinutes) % 60;
+        const arriveTime = `${arriveHour % 12 || 12}:${arriveMinute.toString().padStart(2, '0')} ${arriveHour >= 12 ? 'PM' : 'AM'}`;
+        
+        const price = Math.round(basePrice + (Math.random() * 100 - 50));
+        const co2 = Math.round(300 + duration * 50 + Math.random() * 100);
+        const stops = Math.random() > 0.7 ? '1 stop' : 'Direct';
+        
+        flights.push({
+            id: i + 1,
+            airline: airline.name,
+            logo: airline.logo,
+            from: fromCode || 'YYZ',
+            to: toCode || 'YVR',
+            departTime: departTime,
+            arriveTime: arriveTime,
+            duration: `${duration}h ${durationMinutes}m`,
+            stops: stops,
+            price: isNaN(price) ? 250 : price,
+            co2: co2,
+            priceChange: ['up', 'down', 'stable'][Math.floor(Math.random() * 3)],
+            layoverActivity: stops === '1 stop' ? 'Layover activities available' : null,
+            ecoFriendly: co2 < 400,
+            class: 'Economy',
+            seats: 5 + Math.floor(Math.random() * 20),
+            amenities: airline.amenities
+        });
+    }
+    
+    return flights.sort((a, b) => a.price - b.price);
 }
 
 function extractAirportCode(input) {
@@ -313,9 +307,27 @@ function displayFlights(flights = null) {
     // Use provided flights or fall back to sample data
     const flightsToDisplay = flights || sampleFlights;
     
+    // Store for use in flight details modal
+    currentDisplayedFlights = flightsToDisplay;
+    
     if (flightsToDisplay.length === 0) {
         flightsList.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No flights found for this route. Try different dates or airports.</div>';
         return;
+    }
+    
+    // Add route header if we have flights
+    if (flightsToDisplay.length > 0) {
+        const routeHeader = document.createElement('div');
+        routeHeader.style.cssText = 'margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;';
+        routeHeader.innerHTML = `
+            <h3 style="margin: 0 0 5px 0; color: #333;">
+                ${flightsToDisplay[0].from} → ${flightsToDisplay[0].to}
+            </h3>
+            <p style="margin: 0; color: #666; font-size: 14px;">
+                Found ${flightsToDisplay.length} flight${flightsToDisplay.length > 1 ? 's' : ''} for your search
+            </p>
+        `;
+        flightsList.appendChild(routeHeader);
     }
     
     flightsToDisplay.forEach(flight => {
@@ -340,7 +352,9 @@ function createFlightCard(flight) {
     card.innerHTML = `
         <div class="flight-header">
             <div class="airline-info">
-                <div class="airline-logo">${flight.logo}</div>
+                <div class="airline-logo">
+                    <img src="${flight.logo}" alt="${flight.airline}" style="width: 50px; height: 50px; object-fit: contain;">
+                </div>
                 <div>
                     <div style="font-weight: 600; font-size: 18px;">${flight.airline}</div>
                     <div style="font-size: 14px; color: #666;">${flight.stops} • ${flight.class}</div>
@@ -407,8 +421,13 @@ function createFlightCard(flight) {
     return card;
 }
 
+// Store currently displayed flights globally
+let currentDisplayedFlights = [];
+
 function showFlightDetails(flightId) {
-    const flight = sampleFlights.find(f => f.id === flightId);
+    // Look in currently displayed flights first, then fall back to sample flights
+    const flight = currentDisplayedFlights.find(f => f.id === flightId) || 
+                   sampleFlights.find(f => f.id === flightId);
     if (!flight) return;
     
     // Create modal
@@ -421,7 +440,9 @@ function showFlightDetails(flightId) {
             
             <div class="modal-section">
                 <div class="airline-info" style="margin-bottom: 20px;">
-                    <div class="airline-logo" style="font-size: 48px;">${flight.logo}</div>
+                    <div class="airline-logo">
+                        <img src="${flight.logo}" alt="${flight.airline}" style="width: 80px; height: 80px; object-fit: contain;">
+                    </div>
                     <div>
                         <h3>${flight.airline}</h3>
                         <p>${flight.class} Class</p>
@@ -512,8 +533,10 @@ function closeModal() {
     }
 }
 
-function bookFlight(flightId) {
-    const flight = sampleFlights.find(f => f.id === flightId);
+function bookFlightSimple(flightId) {
+    const flight = currentDisplayedFlights.find(f => f.id === flightId) || 
+                   sampleFlights.find(f => f.id === flightId);
+    if (!flight) return;
     alert(`Booking flight with ${flight.airline} for $${flight.price}\n\n🌍 CO₂ Impact: ${flight.co2}kg\n\nThank you for choosing SkyVibe!`);
 }
 
@@ -653,7 +676,9 @@ if (priceRange) {
 
 
 function bookFlight(flightId) {
-    const flight = sampleFlights.find(f => f.id === flightId);
+    const flight = currentDisplayedFlights.find(f => f.id === flightId) || 
+                   sampleFlights.find(f => f.id === flightId);
+    if (!flight) return;
     closeModal();
     
     // Show booking confirmation

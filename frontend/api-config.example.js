@@ -1,13 +1,13 @@
 // AirLabs API Configuration for Canadian Flights
 const API_CONFIG = {
-    AIRLABS_API_KEY: '2f702fcd-64cd-4a9f-b39e-e212bd7f6eb8', // AirLabs API key
+    AIRLABS_API_KEY: 'YOUR_API_KEY_HERE', // Replace with your actual API key from airlabs.co
     AIRLABS_BASE_URL: 'https://airlabs.co/api/v9',
     CANADIAN_AIRLINES: {
-        'AC': { name: 'Air Canada', logo: 'airlines/Air Canada.png', iata: 'AC', icao: 'ACA' },
-        'WS': { name: 'WestJet', logo: 'airlines/Westjet.png', iata: 'WS', icao: 'WJA' },
-        'PD': { name: 'Porter Airlines', logo: 'airlines/Porter.svg', iata: 'PD', icao: 'POE' },
-        'F8': { name: 'Flair Airlines', logo: 'airlines/Flair Airlines.png', iata: 'F8', icao: 'FLE' },
-        'TS': { name: 'Air Transat', logo: 'airlines/Air Transat.png', iata: 'TS', icao: 'TSC' }
+        'AC': { name: 'Air Canada', logo: '🍁', iata: 'AC', icao: 'ACA' },
+        'WS': { name: 'WestJet', logo: '🛫', iata: 'WS', icao: 'WJA' },
+        'PD': { name: 'Porter Airlines', logo: '✈️', iata: 'PD', icao: 'POE' },
+        'F8': { name: 'Flair Airlines', logo: '💰', iata: 'F8', icao: 'FLE' },
+        'TS': { name: 'Air Transat', logo: '🌴', iata: 'TS', icao: 'TSC' }
     },
     CANADIAN_AIRPORTS: {
         // Ontario
@@ -194,44 +194,25 @@ class AirLabsService {
     convertToAppFormat(apiFlights) {
         return apiFlights.map((flight, index) => {
             const airline = API_CONFIG.CANADIAN_AIRLINES[flight.airline_iata] || {
-                name: flight.airline_iata || 'Unknown Airline',
-                logo: 'airlines/default-airline.png'
+                name: flight.airline_iata,
+                logo: '✈️'
             };
 
-            // Validate and parse times
-            const depTime = flight.dep_time ? new Date(flight.dep_time) : null;
-            const arrTime = flight.arr_time ? new Date(flight.arr_time) : null;
-            
-            // Check if dates are valid
-            const validDepTime = depTime && !isNaN(depTime.getTime());
-            const validArrTime = arrTime && !isNaN(arrTime.getTime());
-            
-            // Calculate or estimate duration
-            let duration;
-            if (flight.duration) {
-                duration = flight.duration;
-            } else if (validDepTime && validArrTime) {
-                duration = this.calculateDuration(depTime, arrTime);
-            } else {
-                // Estimate duration based on route (rough estimate: 2-4 hours for domestic)
-                duration = 120 + Math.floor(Math.random() * 120);
-            }
+            const depTime = new Date(flight.dep_time);
+            const arrTime = new Date(flight.arr_time);
+            const duration = flight.duration || this.calculateDuration(depTime, arrTime);
 
             // Calculate CO2 based on distance (rough estimate)
             const co2 = this.estimateCO2(flight.dep_iata, flight.arr_iata, duration);
-
-            // Format times or use placeholders
-            const formattedDepTime = validDepTime ? this.formatTime(depTime) : this.generateRandomTime();
-            const formattedArrTime = validArrTime ? this.formatTime(arrTime) : this.generateRandomTime(formattedDepTime, duration);
 
             return {
                 id: index + 1,
                 airline: airline.name,
                 logo: airline.logo,
-                from: flight.dep_iata || 'YYZ',
-                to: flight.arr_iata || 'YVR',
-                departTime: formattedDepTime,
-                arriveTime: formattedArrTime,
+                from: flight.dep_iata,
+                to: flight.arr_iata,
+                departTime: this.formatTime(depTime),
+                arriveTime: this.formatTime(arrTime),
                 duration: this.formatDuration(duration),
                 stops: flight.dep_iata === flight.arr_iata ? '1 stop' : 'Direct',
                 price: this.estimatePrice(flight.dep_iata, flight.arr_iata, duration),
@@ -242,9 +223,9 @@ class AirLabsService {
                 class: 'Economy',
                 seats: Math.floor(Math.random() * 20) + 5,
                 amenities: this.getAmenities(airline.name),
-                flightNumber: flight.flight_iata || `FL${index + 1}`,
-                status: flight.status || 'scheduled',
-                delayed: flight.delayed || 0
+                flightNumber: flight.flight_iata,
+                status: flight.status,
+                delayed: flight.delayed
             };
         });
     }
@@ -262,49 +243,9 @@ class AirLabsService {
         });
     }
 
-    generateRandomTime(baseTime = null, durationMinutes = 0) {
-        if (baseTime && durationMinutes) {
-            // Parse base time and add duration
-            const match = baseTime.match(/(\d+):(\d+)\s*(AM|PM)/);
-            if (match) {
-                let hour = parseInt(match[1]);
-                const minute = parseInt(match[2]);
-                const period = match[3];
-                
-                // Convert to 24-hour
-                if (period === 'PM' && hour !== 12) hour += 12;
-                if (period === 'AM' && hour === 12) hour = 0;
-                
-                // Add duration
-                const totalMinutes = hour * 60 + minute + durationMinutes;
-                const newHour = Math.floor(totalMinutes / 60) % 24;
-                const newMinute = totalMinutes % 60;
-                
-                // Convert back to 12-hour
-                const displayHour = newHour % 12 || 12;
-                const displayPeriod = newHour >= 12 ? 'PM' : 'AM';
-                
-                return `${displayHour}:${newMinute.toString().padStart(2, '0')} ${displayPeriod}`;
-            }
-        }
-        
-        // Generate random time between 6 AM and 10 PM
-        const hour = 6 + Math.floor(Math.random() * 16);
-        const minute = Math.floor(Math.random() * 4) * 15; // 0, 15, 30, 45
-        const displayHour = hour % 12 || 12;
-        const period = hour >= 12 ? 'PM' : 'AM';
-        
-        return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
-    }
-
     formatDuration(minutes) {
-        // Validate input
-        if (!minutes || isNaN(minutes) || minutes < 0) {
-            return '2h 30m'; // Default duration
-        }
-        
         const hours = Math.floor(minutes / 60);
-        const mins = Math.round(minutes % 60);
+        const mins = minutes % 60;
         return `${hours}h ${mins}m`;
     }
 
@@ -316,20 +257,14 @@ class AirLabsService {
     }
 
     estimatePrice(depIATA, arrIATA, duration) {
-        // Validate duration
-        const validDuration = duration && !isNaN(duration) ? duration : 150; // Default 2.5 hours
-        
         // Base price calculation
         const basePrice = 100;
         const perMinute = 0.5;
-        const price = basePrice + (validDuration * perMinute);
+        const price = basePrice + (duration * perMinute);
         
         // Add randomness
         const variance = price * 0.2;
-        const finalPrice = Math.round(price + (Math.random() * variance - variance / 2));
-        
-        // Ensure price is valid and reasonable
-        return isNaN(finalPrice) || finalPrice < 50 ? 199 : finalPrice;
+        return Math.round(price + (Math.random() * variance - variance / 2));
     }
 
     randomPriceChange() {

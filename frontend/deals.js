@@ -6,6 +6,7 @@ const flashDeals = [
         originalPrice: 385,
         discount: 48,
         airline: "Air Canada",
+        logo: "airlines/Air Canada.png",
         departure: "Dec 15",
         image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800",
         co2: 420,
@@ -18,6 +19,7 @@ const flashDeals = [
         originalPrice: 340,
         discount: 47,
         airline: "WestJet",
+        logo: "airlines/Westjet.png",
         departure: "Dec 18",
         image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
         co2: 385,
@@ -30,6 +32,7 @@ const flashDeals = [
         originalPrice: 295,
         discount: 49,
         airline: "Air Canada",
+        logo: "airlines/Air Canada.png",
         departure: "Dec 20",
         image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800",
         co2: 310,
@@ -80,6 +83,7 @@ const lastMinuteDeals = [
         originalPrice: 385,
         departure: "Tomorrow",
         airline: "WestJet",
+        logo: "airlines/Westjet.png",
         image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800"
     },
     {
@@ -89,6 +93,7 @@ const lastMinuteDeals = [
         originalPrice: 275,
         departure: "Dec 3",
         airline: "Air Canada",
+        logo: "airlines/Air Canada.png",
         image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800"
     },
     {
@@ -98,6 +103,7 @@ const lastMinuteDeals = [
         originalPrice: 350,
         departure: "Dec 4",
         airline: "Porter Airlines",
+        logo: "airlines/Porter.svg",
         image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800"
     }
 ];
@@ -124,9 +130,12 @@ function loadFlashDeals() {
             <div style="height: 200px; background-image: url('${deal.image}'); background-size: cover; background-position: center;"></div>
             <div style="padding: 25px;">
                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
-                    <div>
+                    <div style="flex: 1;">
                         <h3 style="font-size: 24px; margin-bottom: 5px;">${deal.from} → ${deal.to}</h3>
-                        <p style="color: #666; font-size: 14px;">${deal.airline} • ${deal.departure}</p>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <img src="${deal.logo}" alt="${deal.airline}" style="width: 30px; height: 30px; object-fit: contain;">
+                            <p style="color: #666; font-size: 14px; margin: 0;">${deal.airline} • ${deal.departure}</p>
+                        </div>
                     </div>
                 </div>
                 
@@ -235,7 +244,10 @@ function loadLastMinuteDeals() {
             </div>
             <div style="padding: 25px;">
                 <h3 style="font-size: 22px; margin-bottom: 5px;">${deal.from} → ${deal.to}</h3>
-                <p style="color: #666; margin-bottom: 15px;">${deal.airline}</p>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                    <img src="${deal.logo}" alt="${deal.airline}" style="width: 30px; height: 30px; object-fit: contain;">
+                    <p style="color: #666; margin: 0;">${deal.airline}</p>
+                </div>
                 
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">

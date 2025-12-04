@@ -8,7 +8,7 @@ const upcomingTrips = [
         arrival: "Dec 15, 2024",
         arriveTime: "10:30 AM",
         airline: "Air Canada",
-        logo: "🍁",
+        logo: "airlines/Air Canada.png",
         bookingRef: "AC123456",
         class: "Economy",
         co2: 420,
@@ -23,7 +23,7 @@ const upcomingTrips = [
         arrival: "Dec 22, 2024",
         arriveTime: "6:30 PM",
         airline: "Air Canada",
-        logo: "🍁",
+        logo: "airlines/Air Canada.png",
         bookingRef: "AC123457",
         class: "Economy",
         co2: 420,
@@ -38,7 +38,7 @@ const pastTrips = [
         to: "Montreal (YUL)",
         departure: "Oct 10, 2024",
         airline: "Air Canada",
-        logo: "🍁",
+        logo: "airlines/Air Canada.png",
         class: "Business",
         co2: 125,
         rating: null
@@ -49,7 +49,7 @@ const pastTrips = [
         to: "Halifax (YHZ)",
         departure: "Sep 5, 2024",
         airline: "WestJet",
-        logo: "🛫",
+        logo: "airlines/Westjet.png",
         class: "Economy",
         co2: 385,
         rating: 5
@@ -60,7 +60,7 @@ const pastTrips = [
         to: "Victoria (YYJ)",
         departure: "Aug 20, 2024",
         airline: "Porter Airlines",
-        logo: "✈️",
+        logo: "airlines/Porter.svg",
         class: "Economy",
         co2: 445,
         rating: 4
@@ -89,7 +89,9 @@ function loadUpcomingTrips() {
         card.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 25px;">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="font-size: 48px;">${trip.logo}</div>
+                    <div style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;">
+                        <img src="${trip.logo}" alt="${trip.airline}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
                     <div>
                         <h3 style="font-size: 24px; margin-bottom: 5px;">${trip.from} → ${trip.to}</h3>
                         <p style="color: #666;">${trip.airline} • ${trip.class}</p>
@@ -161,7 +163,9 @@ function loadPastTrips() {
         card.innerHTML = `
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
-                    <div style="font-size: 36px;">${trip.logo}</div>
+                    <div style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                        <img src="${trip.logo}" alt="${trip.airline}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                    </div>
                     <div style="flex: 1;">
                         <h3 style="font-size: 18px; margin-bottom: 5px;">${trip.from} → ${trip.to}</h3>
                         <p style="color: #666; font-size: 14px;">${trip.airline} • ${trip.departure}</p>
