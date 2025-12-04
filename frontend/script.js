@@ -613,8 +613,23 @@ function setDefaultDates() {
     const twoWeeks = new Date(today);
     twoWeeks.setDate(today.getDate() + 14);
     
-    document.getElementById('departure').value = nextWeek.toISOString().split('T')[0];
-    document.getElementById('return').value = twoWeeks.toISOString().split('T')[0];
+    // Set departure date
+    departureDate = nextWeek.toISOString().split('T')[0];
+    document.getElementById('departure').value = nextWeek.toLocaleDateString('en-US', { 
+        weekday: 'short',
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    
+    // Set return date
+    returnDate = twoWeeks.toISOString().split('T')[0];
+    document.getElementById('return').value = twoWeeks.toLocaleDateString('en-US', { 
+        weekday: 'short',
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
 }
 
 // Filter chips
@@ -1126,3 +1141,210 @@ function trackEvent(category, action, label) {
 document.querySelector('.search-btn')?.addEventListener('click', () => {
     trackEvent('Search', 'Flight Search', 'Main Search Form');
 });
+
+
+// Calendar functionality
+let currentCalendarDate = new Date();
+let selectedDate = null;
+let currentDateField = null;
+let departureDate = null;
+let returnDate = null;
+
+// Sample price data for calendar (would come from API in production)
+const flightPrices = {};
+
+function generatePrices() {
+    const today = new Date();
+    for (let i = 0; i < 90; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        const dateStr = date.toISOString().split('T')[0];
+        
+        // Generate random prices with some pattern
+        const basePrice = 200;
+        const dayOfWeek = date.getDay();
+        const weekendMultiplier = (dayOfWeek === 0 || dayOfWeek === 6) ? 1.3 : 1;
+        const randomVariation = Math.random() * 100;
+        
+        flightPrices[dateStr] = Math.round((basePrice + randomVariation) * weekendMultiplier);
+    }
+}
+
+function openCalendar(field) {
+    currentDateField = field;
+    const modal = document.getElementById('calendarModal');
+    modal.style.display = 'flex';
+    
+    // Set current month to show
+    if (field === 'return' && departureDate) {
+        currentCalendarDate = new Date(departureDate);
+    } else {
+        currentCalendarDate = new Date();
+    }
+    
+    renderCalendar();
+}
+
+function closeCalendar() {
+    const modal = document.getElementById('calendarModal');
+    modal.style.display = 'none';
+}
+
+function changeMonth(direction) {
+    currentCalendarDate.setMonth(currentCalendarDate.getMonth() + direction);
+    renderCalendar();
+}
+
+function renderCalendar() {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                       'July', 'August', 'September', 'October', 'November', 'December'];
+    
+    const year = currentCalendarDate.getFullYear();
+    const month = currentCalendarDate.getMonth();
+    
+    // Update header
+    document.getElementById('calendarMonth').textContent = `${monthNames[month]} ${year}`;
+    
+    // Get first day of month and number of days
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const calendarDays = document.getElementById('calendarDays');
+    calendarDays.innerHTML = '';
+    
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    // Add empty cells for days before month starts
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        emptyDay.className = 'calendar-day empty';
+        calendarDays.appendChild(emptyDay);
+    }
+    
+    // Add days of month
+    for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateStr = date.toISOString().split('T')[0];
+        const dayElement = document.createElement('div');
+        dayElement.className = 'calendar-day';
+        
+        // Check if date is in the past
+        if (date < today) {
+            dayElement.classList.add('disabled');
+        }
+        
+        // Check if it's today
+        if (date.toDateString() === today.toDateString()) {
+            dayElement.classList.add('today');
+        }
+        
+        // Check if date is selected
+        if (currentDateField === 'departure' && departureDate && dateStr === departureDate) {
+            dayElement.classList.add('selected');
+        } else if (currentDateField === 'return' && returnDate && dateStr === returnDate) {
+            dayElement.classList.add('selected');
+        }
+        
+        // Check if date is in range (for return date selection)
+        if (currentDateField === 'return' && departureDate) {
+            const depDate = new Date(departureDate);
+            if (date > depDate && returnDate) {
+                const retDate = new Date(returnDate);
+                if (date >= depDate && date <= retDate) {
+                    dayElement.classList.add('in-range');
+                }
+            }
+            
+            // Disable dates before departure
+            if (date <= depDate) {
+                dayElement.classList.add('disabled');
+            }
+        }
+        
+        // Add price indicator
+        const price = flightPrices[dateStr];
+        if (price && date >= today) {
+            const priceElement = document.createElement('div');
+            priceElement.className = 'calendar-day-price';
+            priceElement.textContent = `$${price}`;
+            
+            // Color code by price
+            if (price < 250) {
+                dayElement.classList.add('cheap');
+            } else if (price < 300) {
+                dayElement.classList.add('moderate');
+            } else {
+                dayElement.classList.add('expensive');
+            }
+            
+            dayElement.appendChild(document.createTextNode(day));
+            dayElement.appendChild(priceElement);
+        } else {
+            dayElement.textContent = day;
+        }
+        
+        // Add click handler
+        if (!dayElement.classList.contains('disabled')) {
+            dayElement.onclick = () => selectDate(dateStr, dayElement);
+        }
+        
+        calendarDays.appendChild(dayElement);
+    }
+}
+
+function selectDate(dateStr, element) {
+    // Remove previous selection
+    document.querySelectorAll('.calendar-day').forEach(day => {
+        day.classList.remove('selected');
+    });
+    
+    // Add selection to clicked day
+    element.classList.add('selected');
+    selectedDate = dateStr;
+}
+
+function confirmDate() {
+    if (!selectedDate) {
+        alert('Please select a date');
+        return;
+    }
+    
+    const date = new Date(selectedDate);
+    const formattedDate = date.toLocaleDateString('en-US', { 
+        weekday: 'short',
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    
+    if (currentDateField === 'departure') {
+        departureDate = selectedDate;
+        document.getElementById('departure').value = formattedDate;
+        
+        // Clear return date if it's before new departure date
+        if (returnDate && new Date(returnDate) <= date) {
+            returnDate = null;
+            document.getElementById('return').value = '';
+        }
+    } else if (currentDateField === 'return') {
+        returnDate = selectedDate;
+        document.getElementById('return').value = formattedDate;
+    }
+    
+    closeCalendar();
+    selectedDate = null;
+}
+
+// Close calendar when clicking outside
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('calendarModal');
+    if (modal && e.target === modal) {
+        closeCalendar();
+    }
+});
+
+// Initialize prices on page load
+if (Object.keys(flightPrices).length === 0) {
+    generatePrices();
+}

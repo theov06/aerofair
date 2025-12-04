@@ -7,7 +7,7 @@
     <meta name="keywords" content="flight booking, cheap flights, eco-friendly travel, carbon tracking, price predictions, travel deals">
     <meta name="author" content="SkyVibe">
     <title>SkyVibe - Canadian Domestic Flights with CO2 Tracking</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
+    <link rel="icon" href="logo/background_removed_logo.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +25,7 @@
         
         <nav class="navbar">
             <div class="logo">
-                <span class="logo-icon">✈️</span>
+                <img src="logo/background_removed_logo.png" alt="SkyVibe Logo" style="height: 50px; margin-right: 10px;">
                 <span class="logo-text">SkyVibe</span>
             </div>
             <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
@@ -94,12 +94,18 @@
                     <div class="form-row">
                         <div class="input-group">
                             <label>Departure</label>
-                            <input type="date" id="departure" class="date-input">
+                            <div class="date-picker-wrapper">
+                                <input type="text" id="departure" class="date-input" placeholder="Select date" readonly>
+                                <span class="calendar-icon" onclick="openCalendar('departure')">📅</span>
+                            </div>
                         </div>
                         
                         <div class="input-group">
                             <label>Return</label>
-                            <input type="date" id="return" class="date-input">
+                            <div class="date-picker-wrapper">
+                                <input type="text" id="return" class="date-input" placeholder="Select date" readonly>
+                                <span class="calendar-icon" onclick="openCalendar('return')">📅</span>
+                            </div>
                         </div>
                         
                         <div class="input-group">
@@ -110,6 +116,47 @@
                                 <option>3 Adults</option>
                                 <option>4+ Adults</option>
                             </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Calendar Modal -->
+                    <div id="calendarModal" class="calendar-modal" style="display: none;">
+                        <div class="calendar-content">
+                            <div class="calendar-header">
+                                <button class="calendar-nav-btn" onclick="changeMonth(-1)">‹</button>
+                                <h3 id="calendarMonth"></h3>
+                                <button class="calendar-nav-btn" onclick="changeMonth(1)">›</button>
+                            </div>
+                            
+                            <div class="calendar-legend">
+                                <div class="calendar-legend-item">
+                                    <div class="calendar-legend-dot cheap"></div>
+                                    <span>Best Price</span>
+                                </div>
+                                <div class="calendar-legend-item">
+                                    <div class="calendar-legend-dot moderate"></div>
+                                    <span>Moderate</span>
+                                </div>
+                                <div class="calendar-legend-item">
+                                    <div class="calendar-legend-dot expensive"></div>
+                                    <span>Higher</span>
+                                </div>
+                            </div>
+                            
+                            <div class="calendar-weekdays">
+                                <div>Sun</div>
+                                <div>Mon</div>
+                                <div>Tue</div>
+                                <div>Wed</div>
+                                <div>Thu</div>
+                                <div>Fri</div>
+                                <div>Sat</div>
+                            </div>
+                            <div class="calendar-days" id="calendarDays"></div>
+                            <div class="calendar-footer">
+                                <button class="calendar-btn-secondary" onclick="closeCalendar()">Cancel</button>
+                                <button class="calendar-btn-primary" onclick="confirmDate()">Confirm</button>
+                            </div>
                         </div>
                     </div>
 
@@ -278,7 +325,11 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 SkyVibe. Smart flight booking reimagined.</p>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px;">
+                <img src="logo/background_removed_logo.png" alt="SkyVibe Logo" style="height: 40px;">
+                <span style="font-size: 20px; font-weight: 600;">SkyVibe</span>
+            </div>
+            <p>&copy; 2024 SkyVibe. Canadian domestic flight booking reimagined.</p>
         </div>
     </footer>
 

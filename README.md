@@ -1,6 +1,14 @@
-# ✈️ SkyVibe - Smart Canadian Domestic Flight Booking
-
-A complete, innovative flight booking website for **Canadian domestic flights only** with unique features that don't exist in traditional booking sites. Built with vanilla HTML, CSS, and JavaScript - no frameworks required!
+<div align="center">
+  <img src="logo/logo.jpg" alt="SkyVibe Logo" width="400"/>
+  
+  # ✈️ SkyVibe - Smart Canadian Domestic Flight Booking
+  
+  A complete, innovative flight booking website for **Canadian domestic flights only** with unique features that don't exist in traditional booking sites. Built with vanilla HTML, CSS, and JavaScript - no frameworks required!
+  
+  ![Canadian Airports](https://img.shields.io/badge/Airports-100+-blue)
+  ![Provinces](https://img.shields.io/badge/Provinces-13%2F13-green)
+  ![License](https://img.shields.io/badge/License-MIT-yellow)
+</div>
 
 ## 🌟 Unique Features
 
