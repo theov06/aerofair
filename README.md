@@ -179,9 +179,31 @@ frontend/
 
 ## 🌍 Sample Data
 
-The website includes realistic sample data for:
-- 6 flights with varying prices, routes, and features
-- 12 destinations across the globe
+The website includes realistic sample data for Canadian domestic travel:
+- 6 flights between major Canadian cities (YYZ, YVR, YUL, YYC, etc.)
+- 12 Canadian destinations from coast to coast
+- Multiple deals and promotions for domestic routes
+- Trip history and upcoming bookings across Canada
+
+## ✈️ Complete Airport Coverage
+
+**100+ Canadian Airports** across all provinces and territories:
+- **10 International Hubs**: YYZ, YVR, YUL, YYC, YEG, YOW, YHZ, YWG, YQB, YYJ
+- **20 Regional Hubs**: YLW, YXX, YHM, YMM, YXE, YQR, YQM, YFC, YYT, YDF, and more
+- **70+ Community Airports**: Serving remote and northern communities
+- **Complete Coverage**: All 13 provinces and territories from coast to coast to coast
+
+### Major Cities Covered
+- Ontario: Toronto, Ottawa, Hamilton, London, Windsor, Thunder Bay
+- Quebec: Montreal, Quebec City, Saguenay, Val-d'Or
+- British Columbia: Vancouver, Victoria, Kelowna, Prince George
+- Alberta: Calgary, Edmonton, Fort McMurray, Lethbridge
+- Saskatchewan: Saskatoon, Regina, Prince Albert
+- Manitoba: Winnipeg, Brandon, Thompson
+- Atlantic: Halifax, St. John's, Moncton, Fredericton, Charlottetown
+- North: Whitehorse, Yellowknife, Iqaluit
+
+See [CANADIAN_AIRPORTS.md](CANADIAN_AIRPORTS.md) for the complete list of all airports.
 - Multiple deals and promotions
 - Trip history and upcoming bookings
 

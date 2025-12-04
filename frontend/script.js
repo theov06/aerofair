@@ -785,22 +785,123 @@ function parseDuration(duration) {
     return 0;
 }
 
-// Autocomplete for location inputs - Canadian Airports Only
+// Autocomplete for location inputs - All Canadian Airports
 const airports = [
-    { code: 'YYZ', name: 'Toronto (YYZ)', city: 'Toronto', province: 'ON' },
-    { code: 'YVR', name: 'Vancouver (YVR)', city: 'Vancouver', province: 'BC' },
-    { code: 'YUL', name: 'Montreal (YUL)', city: 'Montreal', province: 'QC' },
-    { code: 'YYC', name: 'Calgary (YYC)', city: 'Calgary', province: 'AB' },
-    { code: 'YOW', name: 'Ottawa (YOW)', city: 'Ottawa', province: 'ON' },
-    { code: 'YEG', name: 'Edmonton (YEG)', city: 'Edmonton', province: 'AB' },
-    { code: 'YHZ', name: 'Halifax (YHZ)', city: 'Halifax', province: 'NS' },
-    { code: 'YWG', name: 'Winnipeg (YWG)', city: 'Winnipeg', province: 'MB' },
-    { code: 'YQB', name: 'Quebec City (YQB)', city: 'Quebec City', province: 'QC' },
-    { code: 'YYJ', name: 'Victoria (YYJ)', city: 'Victoria', province: 'BC' },
-    { code: 'YXE', name: 'Saskatoon (YXE)', city: 'Saskatoon', province: 'SK' },
-    { code: 'YQR', name: 'Regina (YQR)', city: 'Regina', province: 'SK' },
-    { code: 'YYT', name: 'St. John\'s (YYT)', city: 'St. John\'s', province: 'NL' },
-    { code: 'YVZ', name: 'Deer Lake (YVZ)', city: 'Deer Lake', province: 'NL' }
+    // Ontario
+    { code: 'YYZ', name: 'Toronto Pearson (YYZ)', city: 'Toronto', province: 'ON' },
+    { code: 'YTZ', name: 'Billy Bishop Toronto City (YTZ)', city: 'Toronto', province: 'ON' },
+    { code: 'YOW', name: 'Ottawa Macdonald-Cartier (YOW)', city: 'Ottawa', province: 'ON' },
+    { code: 'YHM', name: 'John C. Munro Hamilton (YHM)', city: 'Hamilton', province: 'ON' },
+    { code: 'YXU', name: 'London International (YXU)', city: 'London', province: 'ON' },
+    { code: 'YKF', name: 'Region of Waterloo (YKF)', city: 'Kitchener', province: 'ON' },
+    { code: 'YQG', name: 'Windsor International (YQG)', city: 'Windsor', province: 'ON' },
+    { code: 'YSB', name: 'Sudbury (YSB)', city: 'Sudbury', province: 'ON' },
+    { code: 'YTS', name: 'Timmins Victor M. Power (YTS)', city: 'Timmins', province: 'ON' },
+    { code: 'YQT', name: 'Thunder Bay (YQT)', city: 'Thunder Bay', province: 'ON' },
+    { code: 'YOO', name: 'Oshawa Executive (YOO)', city: 'Oshawa', province: 'ON' },
+    { code: 'YZR', name: 'Sarnia Chris Hadfield (YZR)', city: 'Sarnia', province: 'ON' },
+    { code: 'YPQ', name: 'Peterborough (YPQ)', city: 'Peterborough', province: 'ON' },
+    { code: 'YNO', name: 'North Bay Jack Garland (YNO)', city: 'North Bay', province: 'ON' },
+    { code: 'YSS', name: 'Sault Ste. Marie (YSS)', city: 'Sault Ste. Marie', province: 'ON' },
+    
+    // Quebec
+    { code: 'YUL', name: 'Montreal-Trudeau (YUL)', city: 'Montreal', province: 'QC' },
+    { code: 'YQB', name: 'Quebec City Jean Lesage (YQB)', city: 'Quebec City', province: 'QC' },
+    { code: 'YHU', name: 'Montreal Saint-Hubert (YHU)', city: 'Montreal', province: 'QC' },
+    { code: 'YMX', name: 'Montreal-Mirabel (YMX)', city: 'Montreal', province: 'QC' },
+    { code: 'YQY', name: 'Sydney J.A. Douglas McCurdy (YQY)', city: 'Sydney', province: 'NS' },
+    { code: 'YVO', name: 'Val-d\'Or (YVO)', city: 'Val-d\'Or', province: 'QC' },
+    { code: 'YBG', name: 'Bagotville (YBG)', city: 'Saguenay', province: 'QC' },
+    { code: 'YRJ', name: 'Roberval (YRJ)', city: 'Roberval', province: 'QC' },
+    { code: 'YGP', name: 'Gaspé (YGP)', city: 'Gaspé', province: 'QC' },
+    { code: 'YIF', name: 'Pakuashipi (YIF)', city: 'St-Augustin', province: 'QC' },
+    { code: 'YMT', name: 'Chibougamau/Chapais (YMT)', city: 'Chibougamau', province: 'QC' },
+    { code: 'YGL', name: 'La Grande Rivière (YGL)', city: 'Radisson', province: 'QC' },
+    
+    // British Columbia
+    { code: 'YVR', name: 'Vancouver International (YVR)', city: 'Vancouver', province: 'BC' },
+    { code: 'YYJ', name: 'Victoria International (YYJ)', city: 'Victoria', province: 'BC' },
+    { code: 'YLW', name: 'Kelowna International (YLW)', city: 'Kelowna', province: 'BC' },
+    { code: 'YXX', name: 'Abbotsford International (YXX)', city: 'Abbotsford', province: 'BC' },
+    { code: 'YKA', name: 'Kamloops (YKA)', city: 'Kamloops', province: 'BC' },
+    { code: 'YXS', name: 'Prince George (YXS)', city: 'Prince George', province: 'BC' },
+    { code: 'YCD', name: 'Nanaimo (YCD)', city: 'Nanaimo', province: 'BC' },
+    { code: 'YQQ', name: 'Comox Valley (YQQ)', city: 'Comox', province: 'BC' },
+    { code: 'YPR', name: 'Prince Rupert (YPR)', city: 'Prince Rupert', province: 'BC' },
+    { code: 'YXT', name: 'Terrace-Kitimat (YXT)', city: 'Terrace', province: 'BC' },
+    { code: 'YWL', name: 'Williams Lake (YWL)', city: 'Williams Lake', province: 'BC' },
+    { code: 'YYD', name: 'Smithers (YYD)', city: 'Smithers', province: 'BC' },
+    { code: 'YXC', name: 'Cranbrook (YXC)', city: 'Cranbrook', province: 'BC' },
+    { code: 'YCG', name: 'Castlegar (YCG)', city: 'Castlegar', province: 'BC' },
+    { code: 'YDQ', name: 'Dawson Creek (YDQ)', city: 'Dawson Creek', province: 'BC' },
+    { code: 'YXJ', name: 'Fort St. John (YXJ)', city: 'Fort St. John', province: 'BC' },
+    
+    // Alberta
+    { code: 'YYC', name: 'Calgary International (YYC)', city: 'Calgary', province: 'AB' },
+    { code: 'YEG', name: 'Edmonton International (YEG)', city: 'Edmonton', province: 'AB' },
+    { code: 'YMM', name: 'Fort McMurray (YMM)', city: 'Fort McMurray', province: 'AB' },
+    { code: 'YQL', name: 'Lethbridge (YQL)', city: 'Lethbridge', province: 'AB' },
+    { code: 'YXH', name: 'Medicine Hat (YXH)', city: 'Medicine Hat', province: 'AB' },
+    { code: 'YZH', name: 'Slave Lake (YZH)', city: 'Slave Lake', province: 'AB' },
+    { code: 'YGP', name: 'Grande Prairie (YGP)', city: 'Grande Prairie', province: 'AB' },
+    { code: 'YLJ', name: 'Meadow Lake (YLJ)', city: 'Meadow Lake', province: 'SK' },
+    
+    // Saskatchewan
+    { code: 'YXE', name: 'Saskatoon John G. Diefenbaker (YXE)', city: 'Saskatoon', province: 'SK' },
+    { code: 'YQR', name: 'Regina International (YQR)', city: 'Regina', province: 'SK' },
+    { code: 'YPA', name: 'Prince Albert Glass Field (YPA)', city: 'Prince Albert', province: 'SK' },
+    { code: 'YQU', name: 'Grande Prairie (YQU)', city: 'Grande Prairie', province: 'AB' },
+    { code: 'YQV', name: 'Yorkton (YQV)', city: 'Yorkton', province: 'SK' },
+    { code: 'YXL', name: 'Sioux Lookout (YXL)', city: 'Sioux Lookout', province: 'ON' },
+    
+    // Manitoba
+    { code: 'YWG', name: 'Winnipeg Richardson (YWG)', city: 'Winnipeg', province: 'MB' },
+    { code: 'YBR', name: 'Brandon Municipal (YBR)', city: 'Brandon', province: 'MB' },
+    { code: 'YTH', name: 'Thompson (YTH)', city: 'Thompson', province: 'MB' },
+    { code: 'YQD', name: 'The Pas (YQD)', city: 'The Pas', province: 'MB' },
+    { code: 'YRT', name: 'Rankin Inlet (YRT)', city: 'Rankin Inlet', province: 'NU' },
+    
+    // Nova Scotia
+    { code: 'YHZ', name: 'Halifax Stanfield (YHZ)', city: 'Halifax', province: 'NS' },
+    { code: 'YQI', name: 'Yarmouth (YQI)', city: 'Yarmouth', province: 'NS' },
+    { code: 'YAW', name: 'Shearwater (YAW)', city: 'Shearwater', province: 'NS' },
+    
+    // New Brunswick
+    { code: 'YFC', name: 'Fredericton International (YFC)', city: 'Fredericton', province: 'NB' },
+    { code: 'YSJ', name: 'Saint John (YSJ)', city: 'Saint John', province: 'NB' },
+    { code: 'YQM', name: 'Greater Moncton Roméo LeBlanc (YQM)', city: 'Moncton', province: 'NB' },
+    { code: 'YCL', name: 'Charlo (YCL)', city: 'Charlo', province: 'NB' },
+    { code: 'YBG', name: 'Bagotville (YBG)', city: 'Bagotville', province: 'QC' },
+    
+    // Prince Edward Island
+    { code: 'YYG', name: 'Charlottetown (YYG)', city: 'Charlottetown', province: 'PE' },
+    
+    // Newfoundland and Labrador
+    { code: 'YYT', name: 'St. John\'s International (YYT)', city: 'St. John\'s', province: 'NL' },
+    { code: 'YDF', name: 'Deer Lake Regional (YDF)', city: 'Deer Lake', province: 'NL' },
+    { code: 'YQX', name: 'Gander International (YQX)', city: 'Gander', province: 'NL' },
+    { code: 'YYR', name: 'Goose Bay (YYR)', city: 'Happy Valley-Goose Bay', province: 'NL' },
+    { code: 'YAY', name: 'St. Anthony (YAY)', city: 'St. Anthony', province: 'NL' },
+    { code: 'YHA', name: 'Port Hope Simpson (YHA)', city: 'Port Hope Simpson', province: 'NL' },
+    
+    // Yukon
+    { code: 'YXY', name: 'Whitehorse International (YXY)', city: 'Whitehorse', province: 'YT' },
+    { code: 'YDA', name: 'Dawson City (YDA)', city: 'Dawson City', province: 'YT' },
+    { code: 'YOJ', name: 'High Level (YOJ)', city: 'High Level', province: 'AB' },
+    
+    // Northwest Territories
+    { code: 'YZF', name: 'Yellowknife (YZF)', city: 'Yellowknife', province: 'NT' },
+    { code: 'YHY', name: 'Hay River (YHY)', city: 'Hay River', province: 'NT' },
+    { code: 'YFB', name: 'Iqaluit (YFB)', city: 'Iqaluit', province: 'NU' },
+    { code: 'YEV', name: 'Inuvik Mike Zubko (YEV)', city: 'Inuvik', province: 'NT' },
+    { code: 'YFS', name: 'Fort Simpson (YFS)', city: 'Fort Simpson', province: 'NT' },
+    
+    // Nunavut
+    { code: 'YFB', name: 'Iqaluit (YFB)', city: 'Iqaluit', province: 'NU' },
+    { code: 'YRT', name: 'Rankin Inlet (YRT)', city: 'Rankin Inlet', province: 'NU' },
+    { code: 'YCB', name: 'Cambridge Bay (YCB)', city: 'Cambridge Bay', province: 'NU' },
+    { code: 'YTE', name: 'Cape Dorset (YTE)', city: 'Cape Dorset', province: 'NU' },
+    { code: 'YGZ', name: 'Grise Fiord (YGZ)', city: 'Grise Fiord', province: 'NU' }
 ];
 
 function setupAutocomplete() {
