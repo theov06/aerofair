@@ -1,6 +1,6 @@
-# ✈️ SkyVibe - Smart Flight Booking Platform
+# ✈️ SkyVibe - Smart Canadian Domestic Flight Booking
 
-A complete, innovative flight booking website with unique features that don't exist in traditional booking sites. Built with vanilla HTML, CSS, and JavaScript - no frameworks required!
+A complete, innovative flight booking website for **Canadian domestic flights only** with unique features that don't exist in traditional booking sites. Built with vanilla HTML, CSS, and JavaScript - no frameworks required!
 
 ## 🌟 Unique Features
 

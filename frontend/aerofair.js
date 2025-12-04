@@ -122,35 +122,35 @@ function processAIRequest(message) {
 function showFlightResults(type) {
     const results = {
         budget: {
-            from: "New York",
-            to: "London",
-            price: 299,
-            marketAvg: 580,
-            savings: 281,
+            from: "Toronto",
+            to: "Vancouver",
+            price: 199,
+            marketAvg: 385,
+            savings: 186,
             fairness: "excellent"
         },
         eco: {
-            from: "New York",
-            to: "Tokyo",
-            price: 920,
-            marketAvg: 850,
-            co2: 980,
+            from: "Toronto",
+            to: "Montreal",
+            price: 189,
+            marketAvg: 220,
+            co2: 125,
             fairness: "good"
         },
         business: {
-            from: "New York",
-            to: "Dubai",
-            price: 2850,
-            marketAvg: 3200,
-            savings: 350,
+            from: "Toronto",
+            to: "Calgary",
+            price: 685,
+            marketAvg: 850,
+            savings: 165,
             fairness: "excellent"
         },
         general: {
-            from: "Los Angeles",
-            to: "Paris",
-            price: 650,
-            marketAvg: 720,
-            savings: 70,
+            from: "Montreal",
+            to: "Halifax",
+            price: 275,
+            marketAvg: 320,
+            savings: 45,
             fairness: "good"
         }
     };

@@ -1,104 +1,104 @@
 const flashDeals = [
     {
-        from: "New York",
-        to: "London",
-        price: 299,
-        originalPrice: 580,
+        from: "Toronto",
+        to: "Vancouver",
+        price: 199,
+        originalPrice: 385,
         discount: 48,
-        airline: "Atlantic Air",
+        airline: "Air Canada",
         departure: "Dec 15",
-        image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800",
-        co2: 950,
+        image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800",
+        co2: 420,
         seats: 8
     },
     {
-        from: "Los Angeles",
-        to: "Tokyo",
-        price: 499,
-        originalPrice: 850,
-        discount: 41,
-        airline: "Pacific Wings",
+        from: "Montreal",
+        to: "Calgary",
+        price: 179,
+        originalPrice: 340,
+        discount: 47,
+        airline: "WestJet",
         departure: "Dec 18",
-        image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800",
-        co2: 1100,
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
+        co2: 385,
         seats: 5
     },
     {
-        from: "Miami",
-        to: "Barcelona",
-        price: 349,
-        originalPrice: 620,
-        discount: 44,
-        airline: "Euro Express",
+        from: "Toronto",
+        to: "Halifax",
+        price: 149,
+        originalPrice: 295,
+        discount: 49,
+        airline: "Air Canada",
         departure: "Dec 20",
-        image: "https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800",
-        co2: 880,
+        image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800",
+        co2: 310,
         seats: 12
     }
 ];
 
 const weekendDeals = [
     {
-        from: "New York",
-        to: "Miami",
+        from: "Toronto",
+        to: "Montreal",
         price: 89,
-        duration: "3h 15m",
-        image: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800",
+        duration: "1h 20m",
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
         rating: 4.5
     },
     {
-        from: "San Francisco",
-        to: "Las Vegas",
-        price: 79,
-        duration: "1h 30m",
-        image: "https://images.unsplash.com/photo-1605833556294-ea5c7a74f57d?w=800",
+        from: "Vancouver",
+        to: "Victoria",
+        price: 69,
+        duration: "35m",
+        image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800",
         rating: 4.6
     },
     {
-        from: "Chicago",
-        to: "New Orleans",
-        price: 99,
-        duration: "2h 45m",
-        image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800",
+        from: "Calgary",
+        to: "Edmonton",
+        price: 79,
+        duration: "1h 10m",
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
         rating: 4.7
     },
     {
-        from: "Boston",
-        to: "Washington DC",
-        price: 69,
-        duration: "1h 45m",
-        image: "https://images.unsplash.com/photo-1617581629397-a72507c3de9e?w=800",
+        from: "Toronto",
+        to: "Ottawa",
+        price: 59,
+        duration: "1h",
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800",
         rating: 4.4
     }
 ];
 
 const lastMinuteDeals = [
     {
-        from: "New York",
-        to: "Cancun",
-        price: 199,
-        originalPrice: 450,
+        from: "Toronto",
+        to: "Vancouver",
+        price: 215,
+        originalPrice: 385,
         departure: "Tomorrow",
-        airline: "Tropical Air",
-        image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800"
+        airline: "WestJet",
+        image: "https://images.unsplash.com/photo-1559511260-66a654ae982a?w=800"
     },
     {
-        from: "Los Angeles",
-        to: "Hawaii",
-        price: 249,
-        originalPrice: 520,
+        from: "Montreal",
+        to: "Halifax",
+        price: 139,
+        originalPrice: 275,
         departure: "Dec 3",
-        airline: "Island Wings",
-        image: "https://images.unsplash.com/photo-1542259009477-d625272157b7?w=800"
+        airline: "Air Canada",
+        image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800"
     },
     {
-        from: "Chicago",
-        to: "Denver",
-        price: 89,
-        originalPrice: 220,
+        from: "Calgary",
+        to: "Toronto",
+        price: 189,
+        originalPrice: 350,
         departure: "Dec 4",
-        airline: "Mountain Express",
-        image: "https://images.unsplash.com/photo-1619856699906-09e1f58c98b1?w=800"
+        airline: "Porter Airlines",
+        image: "https://images.unsplash.com/photo-1519659528534-7fd733a832a0?w=800"
     }
 ];
 

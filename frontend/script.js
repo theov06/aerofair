@@ -1,17 +1,17 @@
-// Sample flight data with unique features
+// Sample flight data - Canadian Domestic Flights Only
 const sampleFlights = [
     {
         id: 1,
-        airline: "SkyWings",
-        logo: "✈️",
-        from: "JFK",
-        to: "NRT",
-        departTime: "10:30 AM",
-        arriveTime: "2:45 PM +1",
-        duration: "14h 15m",
+        airline: "Air Canada",
+        logo: "🍁",
+        from: "YYZ",
+        to: "YVR",
+        departTime: "8:00 AM",
+        arriveTime: "10:30 AM",
+        duration: "5h 30m",
         stops: "Direct",
-        price: 850,
-        co2: 1200,
+        price: 285,
+        co2: 420,
         priceChange: "down",
         layoverActivity: null,
         ecoFriendly: true,
@@ -21,97 +21,97 @@ const sampleFlights = [
     },
     {
         id: 2,
-        airline: "Pacific Air",
-        logo: "🌊",
-        from: "JFK",
-        to: "NRT",
-        departTime: "6:15 PM",
-        arriveTime: "11:30 PM +1",
-        duration: "16h 15m",
-        stops: "1 stop (LAX)",
-        price: 650,
-        co2: 1450,
-        priceChange: "up",
-        layoverActivity: "3h layover - Visit Santa Monica Beach, Venice Boardwalk nearby",
-        ecoFriendly: false,
-        class: "Economy",
-        seats: 8,
-        amenities: ["WiFi", "Snacks"]
-    },
-    {
-        id: 3,
-        airline: "EcoJet",
-        logo: "🌱",
-        from: "JFK",
-        to: "NRT",
-        departTime: "8:00 AM",
-        arriveTime: "1:15 PM +1",
-        duration: "15h 15m",
+        airline: "WestJet",
+        logo: "🛫",
+        from: "YYZ",
+        to: "YVR",
+        departTime: "11:15 AM",
+        arriveTime: "1:45 PM",
+        duration: "5h 30m",
         stops: "Direct",
-        price: 920,
-        co2: 980,
+        price: 265,
+        co2: 415,
         priceChange: "stable",
         layoverActivity: null,
         ecoFriendly: true,
         class: "Economy",
-        seats: 15,
-        amenities: ["WiFi", "Organic Meals", "Entertainment", "Extra Legroom"]
+        seats: 18,
+        amenities: ["WiFi", "Snacks", "Entertainment"]
+    },
+    {
+        id: 3,
+        airline: "Air Canada",
+        logo: "🍁",
+        from: "YYZ",
+        to: "YVR",
+        departTime: "6:30 PM",
+        arriveTime: "9:00 PM",
+        duration: "5h 30m",
+        stops: "Direct",
+        price: 310,
+        co2: 420,
+        priceChange: "up",
+        layoverActivity: null,
+        ecoFriendly: true,
+        class: "Economy",
+        seats: 8,
+        amenities: ["WiFi", "Meals", "Entertainment", "Extra Legroom"]
     },
     {
         id: 4,
-        airline: "Global Express",
-        logo: "🌍",
-        from: "JFK",
-        to: "NRT",
-        departTime: "11:45 PM",
-        arriveTime: "5:30 AM +2",
-        duration: "17h 45m",
-        stops: "1 stop (SFO)",
-        price: 580,
-        co2: 1380,
+        airline: "Porter Airlines",
+        logo: "✈️",
+        from: "YYZ",
+        to: "YVR",
+        departTime: "7:00 AM",
+        arriveTime: "12:45 PM",
+        duration: "6h 45m",
+        stops: "1 stop (YYC)",
+        price: 225,
+        co2: 480,
         priceChange: "down",
-        layoverActivity: "4h layover - Golden Gate Bridge tour, Fisherman's Wharf, Alcatraz views",
+        layoverActivity: "2h layover in Calgary - Visit Calgary Tower area, grab Alberta beef",
         ecoFriendly: false,
         class: "Economy",
-        seats: 5,
-        amenities: ["Meals", "Entertainment"]
+        seats: 15,
+        amenities: ["WiFi", "Complimentary Snacks", "Beer & Wine"]
     },
     {
         id: 5,
-        airline: "Luxury Airways",
-        logo: "💎",
-        from: "JFK",
-        to: "NRT",
-        departTime: "9:00 AM",
-        arriveTime: "1:30 PM +1",
-        duration: "14h 30m",
+        airline: "Air Canada",
+        logo: "🍁",
+        from: "YYZ",
+        to: "YVR",
+        departTime: "9:30 AM",
+        arriveTime: "12:00 PM",
+        duration: "5h 30m",
         stops: "Direct",
-        price: 2850,
-        co2: 1100,
+        price: 685,
+        co2: 380,
         priceChange: "stable",
         layoverActivity: null,
-        ecoFriendly: false,
+        ecoFriendly: true,
         class: "Business",
-        seats: 4,
-        amenities: ["WiFi", "Gourmet Meals", "Lie-flat Seats", "Lounge Access", "Premium Entertainment"]
+        seats: 6,
+        amenities: ["WiFi", "Gourmet Meals", "Lie-flat Seats", "Maple Leaf Lounge", "Premium Entertainment"]
     },
     {
         id: 6,
-        airline: "Budget Wings",
+        airline: "Flair Airlines",
         logo: "💰",
-        from: "JFK",
-        to: "NRT",
-        departTime: "3:30 AM",
-        arriveTime: "9:45 PM +1",
-        duration: "18h 15m",
-        stops: "2 stops (ORD, SEA)",
-        price: 420,
-        co2: 1520,
+        from: "YYZ",
+        to: "YVR",
+        departTime: "5:45 AM",
+        arriveTime: "1:30 PM",
+        duration: "7h 45m",
+        stops: "1 stop (YWG)",
+        price: 189,
+        co2: 495,
         priceChange: "down",
-        layoverActivity: "2h in Chicago - Deep dish pizza, 3h in Seattle - Pike Place Market",
+        layoverActivity: "3h layover in Winnipeg - Visit The Forks Market, grab a BeaverTail pastry",
         ecoFriendly: false,
         class: "Economy",
-        seats: 20,
+        seats: 22,
         amenities: ["Basic Seat"]
     }
 ];
@@ -188,6 +188,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeSwapButton();
     initializeTabs();
     setDefaultDates();
+    
+    // Try to initialize AirLabs API if available
+    if (typeof initializeAirLabsAPI !== 'undefined') {
+        const apiKey = localStorage.getItem('airlabs_api_key') || API_CONFIG?.AIRLABS_API_KEY;
+        if (apiKey && apiKey !== 'YOUR_API_KEY_HERE') {
+            initializeAirLabsAPI(apiKey);
+            console.log('AirLabs API initialized - Live flight data available');
+        } else {
+            console.log('Using sample data - Set API key to use live flights');
+        }
+    }
 });
 
 // Mood Selector
@@ -238,7 +249,7 @@ function initializeSearchForm() {
     });
 }
 
-function performSearch() {
+async function performSearch() {
     const from = document.getElementById('from').value;
     const to = document.getElementById('to').value;
     const departure = document.getElementById('departure').value;
@@ -249,21 +260,65 @@ function performSearch() {
         return;
     }
     
-    // Show results
-    displayFlights();
+    // Extract airport codes from input (e.g., "Toronto (YYZ)" -> "YYZ")
+    const fromCode = extractAirportCode(from);
+    const toCode = extractAirportCode(to);
+    
+    // Try to fetch live flights if API is available
+    if (typeof fetchRouteFlights !== 'undefined' && fromCode && toCode) {
+        showNotification('Searching live flights...', 'info');
+        const liveFlights = await fetchRouteFlights(fromCode, toCode);
+        
+        if (liveFlights && liveFlights.length > 0) {
+            // Use live data
+            displayFlights(liveFlights);
+            showNotification(`Found ${liveFlights.length} live flights!`, 'success');
+        } else {
+            // Fallback to sample data
+            displayFlights();
+            showNotification('Showing sample flights (API data unavailable)', 'info');
+        }
+    } else {
+        // Use sample data
+        displayFlights();
+    }
     
     // Scroll to results
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
 
-function displayFlights() {
+function extractAirportCode(input) {
+    // Extract code from format like "Toronto (YYZ)" or just "YYZ"
+    const match = input.match(/\(([A-Z]{3})\)/);
+    if (match) return match[1];
+    
+    // Check if input is already a code
+    if (/^[A-Z]{3}$/.test(input.trim())) return input.trim();
+    
+    // Try to find matching airport
+    const airport = airports.find(a => 
+        a.city.toLowerCase() === input.toLowerCase() ||
+        a.name.toLowerCase().includes(input.toLowerCase())
+    );
+    return airport ? airport.code : null;
+}
+
+function displayFlights(flights = null) {
     const resultsSection = document.getElementById('results');
     const flightsList = document.getElementById('flightsList');
     
     resultsSection.style.display = 'block';
     flightsList.innerHTML = '';
     
-    sampleFlights.forEach(flight => {
+    // Use provided flights or fall back to sample data
+    const flightsToDisplay = flights || sampleFlights;
+    
+    if (flightsToDisplay.length === 0) {
+        flightsList.innerHTML = '<div style="text-align: center; padding: 40px; color: #666;">No flights found for this route. Try different dates or airports.</div>';
+        return;
+    }
+    
+    flightsToDisplay.forEach(flight => {
         const flightCard = createFlightCard(flight);
         flightsList.appendChild(flightCard);
     });
@@ -730,20 +785,22 @@ function parseDuration(duration) {
     return 0;
 }
 
-// Autocomplete for location inputs
+// Autocomplete for location inputs - Canadian Airports Only
 const airports = [
-    { code: 'JFK', name: 'New York (JFK)', city: 'New York' },
-    { code: 'LAX', name: 'Los Angeles (LAX)', city: 'Los Angeles' },
-    { code: 'NRT', name: 'Tokyo (NRT)', city: 'Tokyo' },
-    { code: 'CDG', name: 'Paris (CDG)', city: 'Paris' },
-    { code: 'LHR', name: 'London (LHR)', city: 'London' },
-    { code: 'DXB', name: 'Dubai (DXB)', city: 'Dubai' },
-    { code: 'SIN', name: 'Singapore (SIN)', city: 'Singapore' },
-    { code: 'HKG', name: 'Hong Kong (HKG)', city: 'Hong Kong' },
-    { code: 'SYD', name: 'Sydney (SYD)', city: 'Sydney' },
-    { code: 'BCN', name: 'Barcelona (BCN)', city: 'Barcelona' },
-    { code: 'DPS', name: 'Bali (DPS)', city: 'Bali' },
-    { code: 'SFO', name: 'San Francisco (SFO)', city: 'San Francisco' }
+    { code: 'YYZ', name: 'Toronto (YYZ)', city: 'Toronto', province: 'ON' },
+    { code: 'YVR', name: 'Vancouver (YVR)', city: 'Vancouver', province: 'BC' },
+    { code: 'YUL', name: 'Montreal (YUL)', city: 'Montreal', province: 'QC' },
+    { code: 'YYC', name: 'Calgary (YYC)', city: 'Calgary', province: 'AB' },
+    { code: 'YOW', name: 'Ottawa (YOW)', city: 'Ottawa', province: 'ON' },
+    { code: 'YEG', name: 'Edmonton (YEG)', city: 'Edmonton', province: 'AB' },
+    { code: 'YHZ', name: 'Halifax (YHZ)', city: 'Halifax', province: 'NS' },
+    { code: 'YWG', name: 'Winnipeg (YWG)', city: 'Winnipeg', province: 'MB' },
+    { code: 'YQB', name: 'Quebec City (YQB)', city: 'Quebec City', province: 'QC' },
+    { code: 'YYJ', name: 'Victoria (YYJ)', city: 'Victoria', province: 'BC' },
+    { code: 'YXE', name: 'Saskatoon (YXE)', city: 'Saskatoon', province: 'SK' },
+    { code: 'YQR', name: 'Regina (YQR)', city: 'Regina', province: 'SK' },
+    { code: 'YYT', name: 'St. John\'s (YYT)', city: 'St. John\'s', province: 'NL' },
+    { code: 'YVZ', name: 'Deer Lake (YVZ)', city: 'Deer Lake', province: 'NL' }
 ];
 
 function setupAutocomplete() {
